@@ -25,6 +25,17 @@ body {
 
 .menuHeader {
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.menuHeaderBig {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 10px;
 }
 
 .button {
@@ -96,6 +107,10 @@ body {
 .mouse.dead {
     transform: scale(2, 0.3);
 }
+.mouse.igor,
+.mouse.ratWoman {
+    width: 90px;
+}
 
 .endTextWrapper {
     /* filter: invert(1); */
@@ -124,4 +139,34 @@ body {
     border-radius: 10px;
     background-color: white;
     padding: 8px;
+}
+
+.faq {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(255, 254, 254, 0.7);
+    padding: 32px;
+    border-radius: 0 100px 0px 0;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+.flex-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.img-about {
+    width: auto;
+    height: 100px;
 }

@@ -3,6 +3,7 @@ import BrickCatMenu from "./BrickCatMenu"
 import BrickCatGame from "./BrickCatGame"
 import BrickCatGameOver from "./BrickCatGameOver"
 import BrickCatGameWin from "./BrickCatGameWin"
+import BrickCatGameFaq from "./BrickCatGameFaq"
 import './index.css';
 
 class BrickCatAPP extends React.Component {
@@ -29,10 +30,13 @@ class BrickCatAPP extends React.Component {
         if (newState == "gameOver") {
             current = <BrickCatGameOver updateState={this.updateState} />
         }
-        if (newState == "gameWin") {
-            current = <BrickCatGameWin updateState={this.updateState} />
+        if (newState == "gameWinIgorAlive" || newState == "gameWinIgorDead") {
+            current = <BrickCatGameWin updateState={this.updateState} newState={newState}/>
         }
-
+        if (newState == "faq") {
+            current = <BrickCatGameFaq updateState={this.updateState} />
+        }
+        
         this.setState({
             currentState: newState, currentItem: current
         })

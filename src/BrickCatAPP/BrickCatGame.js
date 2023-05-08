@@ -11,26 +11,37 @@ class BrickCatGame extends React.Component {
     }
 
 
-    componentDidUpdate() {
-
+    componentWillMount() {
+        document.addEventListener("keydown", this.onKeyPressed.bind(this));
     }
 
     componentWillUnmount() {
         this.initGame();
-        document.removeEventListener('keydown', this.onKeyPressed.bind(this));
-        console.log("componentWillUnmount");
+        document.removeEventListener("keydown", this.onKeyPressed.bind(this));
     }
 
-    createMouse() {
+    createMouse(ratType) {
         let newMouse = document.createElement('img');
-        newMouse.src = "./98Tz.webp";
-        newMouse.className = "mouse";
+        if (ratType === "custom") {
+            newMouse.src = "./98Tz.webp";
+            newMouse.className = "mouse";
+        } else if (ratType === "igor") {
+            newMouse.src = "./kryska-igor.png";
+            newMouse.className = "mouse igor";
+        } else if (ratType === "ratWoman") {
+            newMouse.src = "./kryska-lenka.png";
+            newMouse.className = "mouse ratWoman";
+        }
+
+
         if (document.querySelector(".mouseWrapper")) {
             document.querySelector(".mouseWrapper").prepend(newMouse);
         }
     }
 
     componentDidMount() {
+        let isIgorAlive = true;
+
         this.cat = document.querySelector(".catSit");
         let currentTime = 1800;
         if (this.currentGameState === "mount") {
@@ -41,16 +52,15 @@ class BrickCatGame extends React.Component {
 
 
             let timerId = setInterval(function () {
-                console.log(currentTime);
                 if (maxValue + 4000 < currentTime) {
                     clearInterval(timerId);
                     audio.pause();
-                    this.gameWin();
+                    this.gameWin(isIgorAlive);
 
                 }
                 for (var key in json) {
                     if (key == currentTime) {
-                        this.createMouse();
+                        this.createMouse(json[key]);
                     }
                 }
                 currentTime += 10;
@@ -63,13 +73,23 @@ class BrickCatGame extends React.Component {
                 document.querySelectorAll(".mouse").forEach(element => {
                     mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
                     if ((mouseTop >= cheeseTop) && mouseTop && cheeseTop) {
-                        if (!element.classList.contains('dead')) {
-                            element.remove();
-                            audio.pause();
-                            clearInterval(timerId);
-                            this.gameOver();
+                        if (!element.classList.contains('dead')) { // не умерла крыса и пришла к сыру
+                            if (element.classList.contains('igor')) {
+                                // не мертвый игорь не заканчивает игру
+                                isIgorAlive = true;
+                                element.remove();
+                            } else {
+                                element.remove();
+                                audio.pause();
+                                clearInterval(timerId);
+                                this.gameOver();
+                            }
+
 
                         } else {
+                            if (element.classList.contains('igor')) { // мертвые игори ничего не делают
+                                isIgorAlive = false;
+                            }
                             element.remove();
                         }
                     }
@@ -77,12 +97,11 @@ class BrickCatGame extends React.Component {
 
             }.bind(this), 10)
         }
-
     }
+    // || (element.classList.contains('igor') && element.classList.contains('dead')
 
 
     onKeyPressed(e) {
-        console.log("onKeyPressed");
         if (document.querySelector(".catSit")) {
             document.querySelector(".catSit").classList.add("animate");
             this.animateCat();
@@ -97,15 +116,15 @@ class BrickCatGame extends React.Component {
                     miss = false;
                 }
             })
-            // miss && this.reduceHealth();
+            miss && this.reduceHealth();
         }
     }
 
     reduceHealth() {
         this.health = this.health - 1;
         document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
-        if (this.health === 0) {
-            // this.gameOver();
+        if (this.health === -1) {
+            this.gameOver();
         }
     }
 
@@ -139,18 +158,22 @@ class BrickCatGame extends React.Component {
         this.props.updateState("gameOver");
     }
 
-    gameWin() {
-        this.props.updateState("gameWin");
+    gameWin(isIgorAlive) {
+        if (isIgorAlive) {
+            this.props.updateState("gameWinIgorAlive");
+        } else {
+            this.props.updateState("gameWinIgorDead");
+        }
+
     }
 
     initGame() {
         this.health = 5;
-        document.addEventListener('keydown', this.onKeyPressed.bind(this));
     }
 
     render() {
         return (
-            <div className="gameField" onMouseDown={(e) => this.onKeyPressed(e)}>
+            <div className="gameField">
                 <div>
                     <div className="catWrapper"><img src="./KK.png" className="catSit frame0"></img></div>
                     <img src="./2079.webp" className="cheese"></img>
@@ -158,7 +181,7 @@ class BrickCatGame extends React.Component {
                 <div className="mouseWrapper">
                     {/* <img src="./98Tz.webp" className="mouse"></img> */}
                 </div>
-                {/* <div className="health">у вас осталось {this.health} промаха</div> */}
+                <div className="health">у вас осталось {this.health} промаха</div>
             </div>
         );
     }

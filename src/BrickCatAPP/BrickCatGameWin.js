@@ -22,7 +22,7 @@ class BrickCatGameWin extends React.Component {
         return (
             <div className="gameField">
                 <div className="endTextWrapper">
-                    <div className="endText"><div>Победа! Больше дутокрыс не осталось</div>
+                    <div className="endText"><div>{this.props.newState == "gameWinIgorAlive" ? "Победа! Вы смогли заключить мир с дутокрысами!!" : "Победа! Больше дутокрыс не осталось"}</div>
                         <button onClick={() => this.newGameInit()} className="button">Вернуться в начало</button>
                     </div>
                 </div>
