@@ -7,13 +7,19 @@ class BrickCatGame extends React.Component {
         super(props);
         this.cat = document.querySelector(".catSit");
         this.currentGameState = "mount";
+        this.initGame();
     }
 
 
     componentDidUpdate() {
-        // console.log(this.state)
+
     }
 
+    componentWillUnmount() {
+        this.initGame();
+        document.removeEventListener('keydown', this.onKeyPressed.bind(this));
+        console.log("componentWillUnmount");
+    }
 
     createMouse() {
         let newMouse = document.createElement('img');
@@ -23,19 +29,20 @@ class BrickCatGame extends React.Component {
             document.querySelector(".mouseWrapper").prepend(newMouse);
         }
     }
+
     componentDidMount() {
         this.cat = document.querySelector(".catSit");
-        let currentTime = 0;
-        document.addEventListener('keydown', this.onKeyPressed.bind(this));
+        let currentTime = 1800;
         if (this.currentGameState === "mount") {
-            var audio = new Audio('./05.Ultramarines Chant.mp3');
+            var audio = new Audio('./audio.mp3');
             audio.play();
             this.currentGameState = "!mount";
             var maxValue = Math.max(...Object.keys(json));
 
 
             let timerId = setInterval(function () {
-                if (maxValue + 4100 < currentTime) {
+                console.log(currentTime);
+                if (maxValue + 4000 < currentTime) {
                     clearInterval(timerId);
                     audio.pause();
                     this.gameWin();
@@ -75,18 +82,30 @@ class BrickCatGame extends React.Component {
 
 
     onKeyPressed(e) {
+        console.log("onKeyPressed");
         if (document.querySelector(".catSit")) {
             document.querySelector(".catSit").classList.add("animate");
             this.animateCat();
             // плющит
             let catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
             let mouseTop;
+            let miss = true;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
                 if ((mouseTop >= catTop - 35 && mouseTop <= catTop + 35)) {
                     element.classList.add("dead");
+                    miss = false;
                 }
             })
+            // miss && this.reduceHealth();
+        }
+    }
+
+    reduceHealth() {
+        this.health = this.health - 1;
+        document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
+        if (this.health === 0) {
+            // this.gameOver();
         }
     }
 
@@ -119,10 +138,15 @@ class BrickCatGame extends React.Component {
     gameOver() {
         this.props.updateState("gameOver");
     }
+
     gameWin() {
         this.props.updateState("gameWin");
     }
 
+    initGame() {
+        this.health = 5;
+        document.addEventListener('keydown', this.onKeyPressed.bind(this));
+    }
 
     render() {
         return (
@@ -134,7 +158,7 @@ class BrickCatGame extends React.Component {
                 <div className="mouseWrapper">
                     {/* <img src="./98Tz.webp" className="mouse"></img> */}
                 </div>
-
+                {/* <div className="health">у вас осталось {this.health} промаха</div> */}
             </div>
         );
     }

@@ -56,10 +56,10 @@ body {
     object-position: 0px 0px;
 }
 .frame1 {
-    object-position: -400px 0px;
+    object-position: -399px 0px;
 }
 .frame2 {
-    object-position: -800px 0px;
+    object-position: -798px 0px;
 }
 .catWrapper {
     width: 400px;
@@ -82,7 +82,7 @@ body {
     left: 30px;
     bottom: 100px;
     width: 70px;
-    animation: block 4s infinite linear;
+    animation: block 3s infinite linear;
 }
 @keyframes block {
     0% {
@@ -118,4 +118,10 @@ body {
     border-radius: 10px;
     background-color: white;
     padding: 32px;
+}
+
+.health {
+    border-radius: 10px;
+    background-color: white;
+    padding: 8px;
 }

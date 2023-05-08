@@ -23,7 +23,7 @@ class BrickCatMenu extends React.Component {
                 <div className="menuWrapper" >
                     <div className="menuHeader">Помоги Кирпекоту победить!!!</div>
                     <div className="menuContent">
-                        <div>не позволь дутокрысам создать ядерную ракету</div>
+                        <div>не позволь дутокрысам создать ядерную бомбу</div>
                         <div>ВНИМАНИЕ! ОЧЕНЬ РЕЗКИЙ ЗВУК!</div>
                         <button onClick={() => this.newGameInit()} className="button">Начать уничтожение дутокрыс</button>
                     </div>
