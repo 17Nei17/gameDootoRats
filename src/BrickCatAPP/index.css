@@ -47,10 +47,28 @@ body {
     background-size: cover;
 }
 .catSit {
+    right: 70px;
+    bottom: 100px;
+    width: auto;
+    height: 300px;
+}
+.frame0 {
+    object-position: 0px 0px;
+}
+.frame1 {
+    object-position: -400px 0px;
+}
+.frame2 {
+    object-position: -800px 0px;
+}
+.catWrapper {
+    width: 400px;
+    display: flex;
     position: absolute;
     right: 70px;
     bottom: 100px;
-    width: 350px;
+    height: 300px;
+    overflow: hidden;
 }
 .cheese {
     position: absolute;

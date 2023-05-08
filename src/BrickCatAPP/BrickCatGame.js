@@ -24,7 +24,6 @@ class BrickCatGame extends React.Component {
         }
     }
     componentDidMount() {
-        console.log("componentDidMount");
         this.cat = document.querySelector(".catSit");
         let currentTime = 0;
         document.addEventListener('keydown', this.onKeyPressed.bind(this));
@@ -36,7 +35,7 @@ class BrickCatGame extends React.Component {
 
 
             let timerId = setInterval(function () {
-                if (maxValue + 3500 < currentTime) {
+                if (maxValue + 4100 < currentTime) {
                     clearInterval(timerId);
                     audio.pause();
                     this.gameWin();
@@ -51,7 +50,7 @@ class BrickCatGame extends React.Component {
 
                 let catTop, cheeseTop, mouseTop;
                 if (document.querySelector(".catSit") && document.querySelector(".cheese") && document.querySelector(".mouse")) {
-                    catTop = parseInt(window.getComputedStyle(document.querySelector(".catSit")).getPropertyValue("left"));
+                    catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
                     cheeseTop = parseInt(window.getComputedStyle(document.querySelector(".cheese")).getPropertyValue("left"));
                 }
                 document.querySelectorAll(".mouse").forEach(element => {
@@ -78,9 +77,9 @@ class BrickCatGame extends React.Component {
     onKeyPressed(e) {
         if (document.querySelector(".catSit")) {
             document.querySelector(".catSit").classList.add("animate");
-            setTimeout(this.removeAnimate.bind(this), 300);
+            this.animateCat();
             // плющит
-            let catTop = parseInt(window.getComputedStyle(document.querySelector(".catSit")).getPropertyValue("left"));
+            let catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
             let mouseTop;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
@@ -89,12 +88,33 @@ class BrickCatGame extends React.Component {
                 }
             })
         }
-
     }
 
-    removeAnimate() {
-        document.querySelector(".catSit") && document.querySelector(".catSit").classList.remove("animate");
+    animateCat() {
+        var frame = 1;
+        var el = document.querySelector(".catSit");
+
+        setTimeout(function run() {
+            el.classList.remove("frame0");
+            el.classList.add("frame" + frame);
+            frame++;
+        }, 0);
+        setTimeout(function run() {
+            el.classList.remove("frame1");
+            el.classList.add("frame" + frame);
+            frame++;
+        }, 60);
+        setTimeout(function run() {
+            el.classList.remove("frame2");
+            el.classList.add("frame" + frame);
+            frame++;
+        }, 120);
+        setTimeout(function run() {
+            el.classList.remove("frame" + frame);
+            el.classList.add("frame0");
+        }, 140);
     }
+
 
     gameOver() {
         this.props.updateState("gameOver");
@@ -108,7 +128,7 @@ class BrickCatGame extends React.Component {
         return (
             <div className="gameField" onMouseDown={(e) => this.onKeyPressed(e)}>
                 <div>
-                    <img src="./6B3neVPrT3s.jpg" className="catSit"></img>
+                    <div className="catWrapper"><img src="./KK.png" className="catSit frame0"></img></div>
                     <img src="./2079.webp" className="cheese"></img>
                 </div>
                 <div className="mouseWrapper">
