@@ -14,6 +14,7 @@ class BrickCatGame extends React.Component {
 
     componentWillMount() {
         console.log("componentWillMount");
+        this.audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
             this.audio = new Audio('./shinda.mp3');
@@ -125,6 +126,7 @@ class BrickCatGame extends React.Component {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
                 if ((mouseTop >= catTop - 35 && mouseTop <= catTop + 35)) {
                     element.classList.add("dead");
+                    this.audioPunch.play();
                     miss = false;
                 }
             })
