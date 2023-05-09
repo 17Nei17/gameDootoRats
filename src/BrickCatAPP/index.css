@@ -40,10 +40,16 @@ body {
 
 .button {
     margin-top: 16px;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 7px;
+    border-radius: 11px;
     background: firebrick;
     color: white;
+    border: 1px solid firebrick;
+}
+
+.button:hover{
+    background: red;
+    border: 1px solid firebrick;
 }
 
 .gameField {
@@ -56,6 +62,10 @@ body {
     position: relative;
     background-image: url(./2016-09-29-windows-xp-bliss-l5Eg.jpg);
     background-size: cover;
+}
+
+.gameField.everlasting {
+    background-image: url(./i_yPEzGo7YE.jpg);
 }
 
 .gameField.igorAlive {

@@ -2,6 +2,7 @@ import React from "react";
 // import json from "./alecHolowka.json"
 import jsonshinda from "./shinda.json"
 import jsonalecHolowka from "./alecHolowka.json"
+import jsonEverlasting from "./everlasting.json"
 
 
 class BrickCatGame extends React.Component {
@@ -19,9 +20,13 @@ class BrickCatGame extends React.Component {
         if (this.props.newState === "newGame-shinda") {
             this.audio = new Audio('./shinda.mp3');
             this.json = jsonshinda;
+        } else if (this.props.newState === 'newGame-everlasting') {
+            this.audio = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
+            this.json = jsonEverlasting;
+            
         } else {
             this.audio = new Audio('./audio.mp3');
-            this.json = jsonalecHolowka;
+            this.json = jsonshinda;
         }
         this.audio.volume = .5;
         this.currentGameState = "mount";
@@ -49,10 +54,19 @@ class BrickCatGame extends React.Component {
         if (document.querySelector(".mouseWrapper")) {
             document.querySelector(".mouseWrapper").prepend(newMouse);
         }
+
+        // var xPos = 30;
+        
+        // function animate() {
+        //   xPos += 6;
+        
+        //   newMouse.style.left = `${xPos}px`;
+        //   requestAnimationFrame(animate);
+        // }
+        // animate();
     }
 
     componentDidMount() {
-        console.log(this.currentGameState);
         if (this.currentGameState === "mount") {
             let isIgorAlive = true;
             this.cat = document.querySelector(".catSit");
@@ -198,7 +212,7 @@ class BrickCatGame extends React.Component {
 
     render() {
         return (
-            <div className="gameField">
+            <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
                 <div>
                     <div className="catWrapper"><img src="./KK.png" className="catSit frame0"></img></div>
                     <img src="./2079.webp" className="cheese"></img>

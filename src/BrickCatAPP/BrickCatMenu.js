@@ -31,10 +31,13 @@ class BrickCatMenu extends React.Component {
                             <div>ВНИМАНИЕ! ОЧЕНЬ РЕЗКИЙ ЗВУК!</div>
                             <div className="flex-column center">
                                 <div className="columt-element">
-                                    <button onClick={() => this.newGameInit("newGame-shinda")} className="button">Короткая прогулка</button>
+                                    <button onClick={() => this.newGameInit("newGame-everlasting")} className="button">Легчайшая летняя прогулка, однако может вызвать слезы у тех кто старше 18 лет</button>
                                 </div>
                                 <div className="columt-element">
-                                    <button onClick={() => this.newGameInit("newGame-alecHolowka")} className="button">Долгий и затяжной бой</button>
+                                    <button onClick={() => this.newGameInit("newGame-shinda")} className="button">Короткая, но сложная и извилистая дорога</button>
+                                </div>
+                                <div className="columt-element">
+                                    <button onClick={() => this.newGameInit("newGame-alecHolowka")} className="button">Долгий и затяжной бой с Дутокрысами, но не сильно сложный</button>
                                 </div>
                             </div>
                         </div>
