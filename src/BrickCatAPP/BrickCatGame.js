@@ -62,7 +62,7 @@ class BrickCatGame extends React.Component {
 
             var maxValue = Math.max(...Object.keys(json));
 
-
+            // this.gameWin(false);
             this.interval = setInterval(function () {
                 if (maxValue + 6000 < currentTime) {
                     this.audio.pause();
