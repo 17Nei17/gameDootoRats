@@ -22,6 +22,7 @@ class BrickCatGame extends React.Component {
             this.audio = new Audio('./audio.mp3');
             this.json = jsonalecHolowka;
         }
+        this.audio.volume = .5;
     }
 
     componentWillUnmount() {

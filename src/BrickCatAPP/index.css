@@ -105,11 +105,15 @@ body {
 }
 
 .mouse.dead {
+    bottom: 75px;
     transform: scale(2, 0.3);
 }
 
 .dead {
-    transform: scale(2, 0.3);
+    transform: scale(1.2, 0.2);
+}
+.red {
+    color: red;
 }
 
 .mouse.igor,
@@ -174,6 +178,7 @@ body {
 .img-about {
     width: auto;
     height: 100px;
+    padding: 0px 20px 0px 20px;
 }
 
 .columt-element {
@@ -188,4 +193,8 @@ body {
 
 .center {
     align-content: center;
+}
+
+.p{
+    margin: 8px 0px;
 }
