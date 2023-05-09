@@ -8,12 +8,12 @@ class BrickCatGame extends React.Component {
     constructor(props) {
         super(props);
         this.cat = document.querySelector(".catSit");
-        this.currentGameState = "mount";
         this.initGame();
     }
 
 
     componentWillMount() {
+        console.log("componentWillMount");
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
             this.audio = new Audio('./shinda.mp3');
@@ -23,6 +23,8 @@ class BrickCatGame extends React.Component {
             this.json = jsonalecHolowka;
         }
         this.audio.volume = .5;
+        this.currentGameState = "mount";
+        console.log(this.audio);
     }
 
     componentWillUnmount() {
@@ -49,11 +51,11 @@ class BrickCatGame extends React.Component {
     }
 
     componentDidMount() {
-        let isIgorAlive = true;
-
-        this.cat = document.querySelector(".catSit");
-        let currentTime = 1800;
+        console.log(this.currentGameState);
         if (this.currentGameState === "mount") {
+            let isIgorAlive = true;
+            this.cat = document.querySelector(".catSit");
+            let currentTime = 1800;
             var json = this.json;
             this.audio.play();
             this.currentGameState = "!mount";
@@ -63,10 +65,12 @@ class BrickCatGame extends React.Component {
 
             this.interval = setInterval(function () {
                 if (maxValue + 6000 < currentTime) {
-                    clearInterval(this.interval);
                     this.audio.pause();
-                    this.gameWin(isIgorAlive);
+                    this.audio.srcObj = null;
 
+                    this.currentGameState = "mount";
+                    clearInterval(this.interval);
+                    this.gameWin(isIgorAlive);
                 }
                 for (var key in json) {
                     if (key == currentTime) {
@@ -89,6 +93,8 @@ class BrickCatGame extends React.Component {
                                 isIgorAlive = true;
                             } else {
                                 this.audio.pause();
+                                this.audio.srcObj = null;
+                                this.currentGameState = "mount";
                                 clearInterval(this.interval);
                                 this.gameOver();
                             }
@@ -131,6 +137,7 @@ class BrickCatGame extends React.Component {
         document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
         if (this.health === -1) {
             this.audio.pause();
+            this.audio.srcObj = null;
             this.currentGameState = "mount";
             clearInterval(this.interval);
             this.gameOver();
@@ -164,16 +171,19 @@ class BrickCatGame extends React.Component {
 
 
     gameOver() {
-        this.props.updateState("gameOver");
+        setTimeout(function run() {
+            this.props.updateState("gameOver");
+        }.bind(this), 10);
     }
 
     gameWin(isIgorAlive) {
-        if (isIgorAlive) {
-            this.props.updateState("gameWinIgorAlive");
-        } else {
-            this.props.updateState("gameWinIgorDead");
-        }
-
+        setTimeout(function run() {
+            if (isIgorAlive) {
+                this.props.updateState("gameWinIgorAlive");
+            } else {
+                this.props.updateState("gameWinIgorDead");
+            }
+        }.bind(this), 10);
     }
 
     initGame() {
