@@ -16,31 +16,41 @@ class BrickCatGameFaq extends React.Component {
 
     render() {
         return (
-            <div className="menuWrapper">
+            <div className="menuWrapper faqWrapper">
                 <div className="menuHeaderBig">Авторы</div>
                 <div className="flex-column">
-                    <div>
-                        <a className="menuHeader" href="https://catwar.su/cat350676">Рываыфывафпрывларфвыа</a> - создатель кирпекотов
+                    <div className="columt-element">
+                        <a className="menuHeader" href="https://catwar.su/cat350676">Рываыфывафпрывларфвыа</a> - создатель кирпекотов, рисовал кирпекота.
                     </div>
-                    <div>
-                        <a className="menuHeader" href="https://catwar.su/cat1432518">Озарённолапочка</a> - идея, код, стили и хостинг
+                    <div className="columt-element">
+                        <a className="menuHeader" href="https://catwar.su/cat677916">Лайм</a> - идея сюжета взята из его комиксов.
                     </div>
-                    <div>
-                        <a className="menuHeader" >ephemeralCode</a> - заставлял крыс появляться на экране вовремя
+                    <div className="columt-element">
+                        <a className="menuHeader" href="https://catwar.su/cat1432518">Озарённолапочка</a> - идея игры, код, стили .
+                    </div>
+                    <div className="columt-element">
+                        <a className="menuHeader" >ephemeralCode</a> - заставлял крыс появляться на экране вовремя.
+                    </div>
+                    <div className="columt-element">
+                        <a className="menuHeader" >Умка</a> - рисовал одежду дутокрысам.
                     </div>
                 </div>
                 <div className="menuHeaderBig">Действующие лица</div>
                 <div className="flex-column">
                     <div className="flex-row ">
-                        <div className="menuHeader">Кирпекот</div>
+                        <div className="menuHeader">Кирпекот (не понимает что происходит, но умеет выбивать такт своими лапками)</div>
                         <img className="img-about" src="./kot.webp"></img>
                     </div>
                     <div className="flex-row reverse">
-                        <div className="menuHeader">Дутокрысы</div>
+                        <div className="menuHeader">Дутокрысы (бегут - некоторые к сыру, некоторые на свидание, а некоторые по важным делам)</div>
                         <img className="img-about" src="./98Tz.webp"></img>
                     </div>
                     <div className="flex-row ">
-                        <div className="menuHeader">Сыр</div>
+                        <div className="menuHeader">Плющекрысы (временно перешедшие в 2д версию Дутокрысы, все еще бегут, но забыли зачем)</div>
+                        <img className="img-about dead" src="./98Tz.webp"></img>
+                    </div>
+                    <div className="flex-row reverse">
+                        <div className="menuHeader">Сыр (лежит)</div>
                         <img className="img-about" src="./2079.webp"></img>
                     </div>
                 </div>
@@ -53,7 +63,10 @@ class BrickCatGameFaq extends React.Component {
                 <div className="menuHeaderBig">Конспирология</div>
                 <div className="flex-column">
                     <div className="flex-row ">
-                        <div className="menuHeader">Тут должен быть текст который пояснит что вообще происходит, зачем крысам сыр. Почему 2д крысы(плоские) не могут взять 3д сыр и тд</div>
+                        <div className="menuHeader">
+                            Дутокрысы намерены перезапустить вселенную Catwar. Чтобы это сделать, им необходимо создать атомную бомбу и активировать её, но у них возникла проблема: кирпекоты украли рецепт ядерной бомбы и спрятали у себя секретный третий ингредиент — сыр. Пока дутокрысам не достаёт важного компонента, Catwar в безопасности. Но они не остановятся, пока не заполучат третий ингредиент... Дутокрысы до последнего желают создать новый мир посредством уничтожения старого. Но кирпекоты этого не допустят!
+
+                            Вы — кирпекот, которому поручено охранять сыр от стаи дутокрыс. Ни в коем случае нельзя допустить заполучение ингредиента врагом, иначе гибели не избежать!</div>
                     </div>
                 </div>
 

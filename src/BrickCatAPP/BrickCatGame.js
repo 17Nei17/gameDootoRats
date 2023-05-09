@@ -1,5 +1,7 @@
 import React from "react";
-import json from "./soundConfig.json"
+// import json from "./alecHolowka.json"
+import jsonshinda from "./shinda.json"
+import jsonalecHolowka from "./alecHolowka.json"
 
 
 class BrickCatGame extends React.Component {
@@ -13,10 +15,16 @@ class BrickCatGame extends React.Component {
 
     componentWillMount() {
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
+        if (this.props.newState === "newGame-shinda") {
+            this.audio = new Audio('./shinda.mp3');
+            this.json = jsonshinda;
+        } else {
+            this.audio = new Audio('./audio.mp3');
+            this.json = jsonalecHolowka;
+        }
     }
 
     componentWillUnmount() {
-        this.initGame();
         document.removeEventListener("keydown", this.onKeyPressed.bind(this));
     }
 
@@ -45,16 +53,17 @@ class BrickCatGame extends React.Component {
         this.cat = document.querySelector(".catSit");
         let currentTime = 1800;
         if (this.currentGameState === "mount") {
-            var audio = new Audio('./audio.mp3');
-            audio.play();
+            var json = this.json;
+            this.audio.play();
             this.currentGameState = "!mount";
+
             var maxValue = Math.max(...Object.keys(json));
 
 
-            let timerId = setInterval(function () {
-                if (maxValue + 4000 < currentTime) {
-                    clearInterval(timerId);
-                    audio.pause();
+            this.interval = setInterval(function () {
+                if (maxValue + 6000 < currentTime) {
+                    clearInterval(this.interval);
+                    this.audio.pause();
                     this.gameWin(isIgorAlive);
 
                 }
@@ -77,11 +86,9 @@ class BrickCatGame extends React.Component {
                             if (element.classList.contains('igor')) {
                                 // не мертвый игорь не заканчивает игру
                                 isIgorAlive = true;
-                                element.remove();
                             } else {
-                                element.remove();
-                                audio.pause();
-                                clearInterval(timerId);
+                                this.audio.pause();
+                                clearInterval(this.interval);
                                 this.gameOver();
                             }
 
@@ -90,22 +97,20 @@ class BrickCatGame extends React.Component {
                             if (element.classList.contains('igor')) { // мертвые игори ничего не делают
                                 isIgorAlive = false;
                             }
-                            element.remove();
                         }
+                        element.remove();
                     }
                 });
 
             }.bind(this), 10)
         }
     }
-    // || (element.classList.contains('igor') && element.classList.contains('dead')
 
 
     onKeyPressed(e) {
         if (document.querySelector(".catSit")) {
             document.querySelector(".catSit").classList.add("animate");
             this.animateCat();
-            // плющит
             let catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
             let mouseTop;
             let miss = true;
@@ -124,6 +129,9 @@ class BrickCatGame extends React.Component {
         this.health = this.health - 1;
         document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
         if (this.health === -1) {
+            this.audio.pause();
+            this.currentGameState = "mount";
+            clearInterval(this.interval);
             this.gameOver();
         }
     }

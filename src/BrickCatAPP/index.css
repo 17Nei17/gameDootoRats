@@ -25,7 +25,7 @@ body {
 
 .menuHeader {
     font-weight: bold;
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 8px;
 }
 
@@ -107,6 +107,11 @@ body {
 .mouse.dead {
     transform: scale(2, 0.3);
 }
+
+.dead {
+    transform: scale(2, 0.3);
+}
+
 .mouse.igor,
 .mouse.ratWoman {
     width: 90px;
@@ -169,4 +174,18 @@ body {
 .img-about {
     width: auto;
     height: 100px;
+}
+
+.columt-element {
+    margin-bottom: 6px;
+}
+
+.faqWrapper {
+    max-width: 600px;
+    overflow-y: scroll;
+    max-height: 90%;
+}
+
+.center {
+    align-content: center;
 }

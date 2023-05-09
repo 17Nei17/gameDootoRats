@@ -26,7 +26,14 @@ class BrickCatMenu extends React.Component {
                     <div className="menuContent">
                         <div>не позволь дутокрысам создать ядерную бомбу</div>
                         <div>ВНИМАНИЕ! ОЧЕНЬ РЕЗКИЙ ЗВУК!</div>
-                        <button onClick={() => this.newGameInit("newGame")} className="button">Начать уничтожение дутокрыс</button>
+                        <div className="flex-column center">
+                            <div className="columt-element">
+                                <button onClick={() => this.newGameInit("newGame-shinda")} className="button">Короткая прогулка</button>
+                            </div>
+                            <div className="columt-element">
+                                <button onClick={() => this.newGameInit("newGame-alecHolowka")} className="button">Долгий и затяжной бой</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="faq">
