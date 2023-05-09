@@ -66,11 +66,7 @@ class BrickCatGame extends React.Component {
             // this.gameWin(false);
             this.interval = setInterval(function () {
                 if (maxValue + 6000 < currentTime) {
-                    this.audio.pause();
-                    this.audio.srcObj = null;
-
-                    this.currentGameState = "mount";
-                    clearInterval(this.interval);
+                    this.stopAudioAndInterval();
                     this.gameWin(isIgorAlive);
                 }
                 for (var key in json) {
@@ -93,10 +89,7 @@ class BrickCatGame extends React.Component {
                                 // не мертвый игорь не заканчивает игру
                                 isIgorAlive = true;
                             } else {
-                                this.audio.pause();
-                                this.audio.srcObj = null;
-                                this.currentGameState = "mount";
-                                clearInterval(this.interval);
+                                this.stopAudioAndInterval();
                                 this.gameOver();
                             }
 
@@ -127,6 +120,11 @@ class BrickCatGame extends React.Component {
                 if ((mouseTop >= catTop - 35 && mouseTop <= catTop + 35)) {
                     element.classList.add("dead");
                     this.audioPunch.play();
+                    setTimeout(function run() {
+                        this.audioPunch.pause();
+                        this.audioPunch.currentTime = 0;
+                    }.bind(this), 100);
+
                     miss = false;
                 }
             })
@@ -138,12 +136,18 @@ class BrickCatGame extends React.Component {
         this.health = this.health - 1;
         document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
         if (this.health === -1) {
-            this.audio.pause();
-            this.audio.srcObj = null;
-            this.currentGameState = "mount";
-            clearInterval(this.interval);
+            this.stopAudioAndInterval();
             this.gameOver();
         }
+    }
+
+    stopAudioAndInterval() {
+        this.audioPunch.pause();
+        this.audioPunch.srcObj = null;
+        this.audio.pause();
+        this.audio.srcObj = null;
+        this.currentGameState = "mount";
+        clearInterval(this.interval);
     }
 
     animateCat() {
