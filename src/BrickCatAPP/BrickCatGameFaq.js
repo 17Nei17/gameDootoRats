@@ -59,6 +59,9 @@ class BrickCatGameFaq extends React.Component {
                     <div className="flex-row ">
                         <div className="menuHeader">Нажимайте любую кнопку чтобы Кирпекот ударил лапой (кроме кнопки выключения компьютера и кнопок на мониторе и мышке)</div>
                     </div>
+                    <div className="flex-row ">
+                        <div className="menuHeader">Количество промахов сверху игрового поля указывает сколько раз можно ударить лапой вне Дутомыши. Однако ни одна Дутомышь не должна попасть к сыру, это приведет к поражению Кирпекота.</div>
+                    </div>
                 </div>
                 <div className="menuHeaderBig">Конспирология</div>
                 <div className="flex-column">
