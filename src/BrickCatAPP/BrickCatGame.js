@@ -179,7 +179,7 @@ class BrickCatGame extends React.Component {
     gameOver() {
         setTimeout(function run() {
             this.props.updateState("gameOver");
-        }.bind(this), 10);
+        }.bind(this), 200);
     }
 
     gameWin(isIgorAlive) {
@@ -189,7 +189,7 @@ class BrickCatGame extends React.Component {
             } else {
                 this.props.updateState("gameWinIgorDead");
             }
-        }.bind(this), 10);
+        }.bind(this), 200);
     }
 
     initGame() {
