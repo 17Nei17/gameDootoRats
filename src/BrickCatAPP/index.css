@@ -47,7 +47,7 @@ body {
     border: 1px solid firebrick;
 }
 
-.button:hover{
+.button:hover {
     background: red;
     border: 1px solid firebrick;
 }
@@ -217,4 +217,25 @@ body {
 
 .p {
     margin: 8px 0px;
+}
+
+.info-text {
+    color: red;
+    animation-duration: 8s;
+    animation-name: text;
+    animation-iteration-count: 1;
+    opacity: 0;
+
+}
+
+@keyframes text {
+    0% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

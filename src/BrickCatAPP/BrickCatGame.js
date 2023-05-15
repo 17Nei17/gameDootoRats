@@ -14,27 +14,25 @@ class BrickCatGame extends React.Component {
     constructor(props) {
         super(props);
         this.cat = document.querySelector(".catSit");
-        this.initGame();
-        // this.state = {audioPunch: new Audio('./skywalker_punch_sound_3.mp3')}
+        this.state = {
+            counter: 1900,
+            intervalId: null
+        };
     }
 
 
     componentWillMount() {
-        console.log("componentWillMount");
-        // this.audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
+        this.initGame();
         this.audioPunch = audioPunch;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
-            // this.audio = new Audio('./shinda.mp3');
             this.audio = shinda;
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
-            // this.audio = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
             this.audio = everlasting_Summer;
             this.json = jsonEverlasting;
 
         } else {
-            // this.audio = new Audio('./audio.mp3');
             this.audio = alecHolowka;
             this.json = jsonalecHolowka;
         }
@@ -42,15 +40,54 @@ class BrickCatGame extends React.Component {
         this.audio.pause();
         this.audio.currentTime = 0;
         this.currentGameState = "mount";
-        console.log(this.audio);
     }
 
     componentWillUnmount() {
         document.removeEventListener("keydown", this.onKeyPressed.bind(this));
+        clearInterval(this.state.intervalId);
+    }
+
+    shouldComponentUpdate() {
+        return true;
     }
 
     componentDidUpdate() {
-        console.log("componentDidUpdate");
+        if (this.maxValue + 6000 < this.state.counter) {
+            this.stopAudioAndInterval();
+            this.gameWin(this.isIgorAlive);
+        }
+        for (var key in this.json) {
+            if (key == this.state.counter) {
+                this.createMouse(this.json[key]);
+            }
+        }
+
+        let catTop, cheeseTop, mouseTop;
+        if (document.querySelector(".catSit") && document.querySelector(".cheese") && document.querySelector(".mouse")) {
+            catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
+            cheeseTop = parseInt(window.getComputedStyle(document.querySelector(".cheese")).getPropertyValue("left"));
+        }
+        document.querySelectorAll(".mouse").forEach(element => {
+            mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
+            if ((mouseTop >= cheeseTop) && mouseTop && cheeseTop) {
+                if (!element.classList.contains('dead')) { // не умерла крыса и пришла к сыру
+                    if (element.classList.contains('igor')) {
+                        // не мертвый игорь не заканчивает игру
+                        this.isIgorAlive = true;
+                    } else {
+                        this.stopAudioAndInterval();
+                        this.gameOver();
+                    }
+
+
+                } else {
+                    if (element.classList.contains('igor')) { // мертвые игори ничего не делают
+                        this.isIgorAlive = false;
+                    }
+                }
+                element.remove();
+            }
+        });
     }
 
     createMouse(ratType) {
@@ -70,70 +107,24 @@ class BrickCatGame extends React.Component {
         if (document.querySelector(".mouseWrapper")) {
             document.querySelector(".mouseWrapper").prepend(newMouse);
         }
-
-        // var xPos = 30;
-
-        // function animate() {
-        //   xPos += 6;
-
-        //   newMouse.style.left = `${xPos}px`;
-        //   requestAnimationFrame(animate);
-        // }
-        // animate();
     }
 
     componentDidMount() {
+
+        console.log("componentDidMount")
         if (this.currentGameState === "mount") {
-            let isIgorAlive = true;
+            const intervalId = setInterval(() => {
+                this.setState(prevState => ({ counter: this.state.counter + 10 }));
+            }, 10);
+            this.setState({ intervalId });
+            this.isIgorAlive = true;
             this.cat = document.querySelector(".catSit");
-            let currentTime = 1800;
+            this.currentTime = 1800;
             var json = this.json;
             this.audio.play();
             this.currentGameState = "!mount";
 
-            var maxValue = Math.max(...Object.keys(json));
-
-            // this.gameWin(false);
-            this.interval = setInterval(function () {
-                if (maxValue + 6000 < currentTime) {
-                    this.stopAudioAndInterval();
-                    this.gameWin(isIgorAlive);
-                }
-                for (var key in json) {
-                    if (key == currentTime) {
-                        this.createMouse(json[key]);
-                    }
-                }
-                currentTime += 10;
-
-                let catTop, cheeseTop, mouseTop;
-                if (document.querySelector(".catSit") && document.querySelector(".cheese") && document.querySelector(".mouse")) {
-                    catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
-                    cheeseTop = parseInt(window.getComputedStyle(document.querySelector(".cheese")).getPropertyValue("left"));
-                }
-                document.querySelectorAll(".mouse").forEach(element => {
-                    mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
-                    if ((mouseTop >= cheeseTop) && mouseTop && cheeseTop) {
-                        if (!element.classList.contains('dead')) { // не умерла крыса и пришла к сыру
-                            if (element.classList.contains('igor')) {
-                                // не мертвый игорь не заканчивает игру
-                                isIgorAlive = true;
-                            } else {
-                                this.stopAudioAndInterval();
-                                this.gameOver();
-                            }
-
-
-                        } else {
-                            if (element.classList.contains('igor')) { // мертвые игори ничего не делают
-                                isIgorAlive = false;
-                            }
-                        }
-                        element.remove();
-                    }
-                });
-
-            }.bind(this), 10)
+            this.maxValue = Math.max(...Object.keys(json));
         }
     }
 
@@ -177,7 +168,7 @@ class BrickCatGame extends React.Component {
         this.audio.pause();
         this.audio.srcObj = null;
         this.currentGameState = "mount";
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
     }
 
     animateCat() {
@@ -207,19 +198,15 @@ class BrickCatGame extends React.Component {
 
 
     gameOver() {
-        setTimeout(function run() {
-            this.props.updateState("gameOver");
-        }.bind(this), 200);
+        this.props.updateState("gameOver");
     }
 
     gameWin(isIgorAlive) {
-        setTimeout(function run() {
-            if (isIgorAlive) {
-                this.props.updateState("gameWinIgorAlive");
-            } else {
-                this.props.updateState("gameWinIgorDead");
-            }
-        }.bind(this), 200);
+        if (isIgorAlive) {
+            this.props.updateState("gameWinIgorAlive");
+        } else {
+            this.props.updateState("gameWinIgorDead");
+        }
     }
 
     initGame() {
@@ -237,6 +224,8 @@ class BrickCatGame extends React.Component {
                     {/* <img src="./98Tz.webp" className="mouse"></img> */}
                 </div>
                 <div className="health">у вас осталось {this.health} промаха</div>
+                {this.props.newState === 'newGame-everlasting' ? <div className="info-text">Нужно чуть-чуть подождать</div> : ''}
+                <p>Counter: {this.state.counter}</p>
             </div>
         );
     }
