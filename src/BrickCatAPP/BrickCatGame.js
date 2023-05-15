@@ -16,13 +16,13 @@ class BrickCatGame extends React.Component {
         this.cat = document.querySelector(".catSit");
         this.state = {
             counter: 1900,
+            health: 5,
             intervalId: null
         };
     }
 
 
     componentWillMount() {
-        this.initGame();
         this.audioPunch = audioPunch;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
@@ -39,7 +39,6 @@ class BrickCatGame extends React.Component {
         this.audio.volume = .5;
         this.audio.pause();
         this.audio.currentTime = 0;
-        this.currentGameState = "mount";
     }
 
     componentWillUnmount() {
@@ -76,6 +75,7 @@ class BrickCatGame extends React.Component {
                         this.isIgorAlive = true;
                     } else {
                         this.stopAudioAndInterval();
+                        console.log("cheese")
                         this.gameOver();
                     }
 
@@ -110,22 +110,17 @@ class BrickCatGame extends React.Component {
     }
 
     componentDidMount() {
+        const intervalId = setInterval(() => {
+            this.setState(prevState => ({ counter: this.state.counter + 10 }));
+        }, 10);
+        this.setState({ intervalId });
+        this.isIgorAlive = true;
+        this.cat = document.querySelector(".catSit");
+        this.currentTime = 1800;
+        var json = this.json;
+        this.audio.play();
 
-        console.log("componentDidMount")
-        if (this.currentGameState === "mount") {
-            const intervalId = setInterval(() => {
-                this.setState(prevState => ({ counter: this.state.counter + 10 }));
-            }, 10);
-            this.setState({ intervalId });
-            this.isIgorAlive = true;
-            this.cat = document.querySelector(".catSit");
-            this.currentTime = 1800;
-            var json = this.json;
-            this.audio.play();
-            this.currentGameState = "!mount";
-
-            this.maxValue = Math.max(...Object.keys(json));
-        }
+        this.maxValue = Math.max(...Object.keys(json));
     }
 
 
@@ -154,9 +149,15 @@ class BrickCatGame extends React.Component {
     }
 
     reduceHealth() {
-        this.health = this.health - 1;
-        document.querySelector(".health").innerHTML = "у вас осталось " + this.health + " промаха";
-        if (this.health === -1) {
+        this.setState({ health: this.state.health - 1 }, function () {
+            this.checkHealth()
+        })
+    }
+
+    checkHealth() {
+        console.log(this.state.health)
+        if (this.state.health <= 0) {
+            console.log("lowHP")
             this.stopAudioAndInterval();
             this.gameOver();
         }
@@ -167,7 +168,7 @@ class BrickCatGame extends React.Component {
         this.audioPunch.srcObj = null;
         this.audio.pause();
         this.audio.srcObj = null;
-        this.currentGameState = "mount";
+        // this.currentGameState = "mount";
         // clearInterval(this.interval);
     }
 
@@ -209,10 +210,6 @@ class BrickCatGame extends React.Component {
         }
     }
 
-    initGame() {
-        this.health = 5;
-    }
-
     render() {
         return (
             <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
@@ -223,9 +220,9 @@ class BrickCatGame extends React.Component {
                 <div className="mouseWrapper">
                     {/* <img src="./98Tz.webp" className="mouse"></img> */}
                 </div>
-                <div className="health">у вас осталось {this.health} промаха</div>
+                <div className="health">у вас осталось {this.state.health} промаха</div>
                 {this.props.newState === 'newGame-everlasting' ? <div className="info-text">Нужно чуть-чуть подождать</div> : ''}
-                <p>Counter: {this.state.counter}</p>
+                <p>Counter: {this.state.counter} ms</p>
             </div>
         );
     }
