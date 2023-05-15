@@ -24,7 +24,7 @@ class BrickCatAPP extends React.Component {
         if (newState == "menuPage") {
             current = <BrickCatMenu updateState={this.updateState} />
         }
-        if (newState == "newGame-shinda" || newState == "newGame-alecHolowka" ||  newState == "newGame-everlasting") {
+        if (newState == "newGame-shinda" || newState == "newGame-alecHolowka" || newState == "newGame-everlasting") {
             current = <BrickCatGame updateState={this.updateState} newState={newState} />
         }
         if (newState == "gameOver") {

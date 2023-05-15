@@ -5,36 +5,52 @@ import jsonalecHolowka from "./alecHolowka.json"
 import jsonEverlasting from "./everlasting.json"
 
 
+const audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
+const shinda = new Audio('./shinda.mp3');
+const everlasting_Summer = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
+const alecHolowka = new Audio('./audio.mp3');
+
 class BrickCatGame extends React.Component {
     constructor(props) {
         super(props);
         this.cat = document.querySelector(".catSit");
         this.initGame();
+        // this.state = {audioPunch: new Audio('./skywalker_punch_sound_3.mp3')}
     }
 
 
     componentWillMount() {
         console.log("componentWillMount");
-        this.audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
+        // this.audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
+        this.audioPunch = audioPunch;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
-            this.audio = new Audio('./shinda.mp3');
+            // this.audio = new Audio('./shinda.mp3');
+            this.audio = shinda;
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
-            this.audio = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
+            // this.audio = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
+            this.audio = everlasting_Summer;
             this.json = jsonEverlasting;
-            
+
         } else {
-            this.audio = new Audio('./audio.mp3');
-            this.json = jsonshinda;
+            // this.audio = new Audio('./audio.mp3');
+            this.audio = alecHolowka;
+            this.json = jsonalecHolowka;
         }
         this.audio.volume = .5;
+        this.audio.pause();
+        this.audio.currentTime = 0;
         this.currentGameState = "mount";
         console.log(this.audio);
     }
 
     componentWillUnmount() {
         document.removeEventListener("keydown", this.onKeyPressed.bind(this));
+    }
+
+    componentDidUpdate() {
+        console.log("componentDidUpdate");
     }
 
     createMouse(ratType) {
@@ -56,10 +72,10 @@ class BrickCatGame extends React.Component {
         }
 
         // var xPos = 30;
-        
+
         // function animate() {
         //   xPos += 6;
-        
+
         //   newMouse.style.left = `${xPos}px`;
         //   requestAnimationFrame(animate);
         // }
@@ -131,13 +147,13 @@ class BrickCatGame extends React.Component {
             let miss = true;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
-                if ((mouseTop >= catTop - 35 && mouseTop <= catTop + 35)) {
+                if ((mouseTop >= catTop - 30 && mouseTop <= catTop + 30)) {
                     element.classList.add("dead");
                     this.audioPunch.play();
                     setTimeout(function run() {
                         this.audioPunch.pause();
                         this.audioPunch.currentTime = 0;
-                    }.bind(this), 100);
+                    }.bind(this), 120);
 
                     miss = false;
                 }
@@ -177,16 +193,16 @@ class BrickCatGame extends React.Component {
             el.classList.remove("frame1");
             el.classList.add("frame" + frame);
             frame++;
-        }, 60);
+        }, 40);
         setTimeout(function run() {
             el.classList.remove("frame2");
             el.classList.add("frame" + frame);
             frame++;
-        }, 120);
+        }, 80);
         setTimeout(function run() {
             el.classList.remove("frame" + frame);
             el.classList.add("frame0");
-        }, 140);
+        }, 160);
     }
 
 
