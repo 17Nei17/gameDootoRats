@@ -15,7 +15,7 @@ class BrickCatGame extends React.Component {
         super(props);
         this.cat = document.querySelector(".catSit");
         this.state = {
-            counter: 1900,
+            counter: 1850,
             health: 5,
             intervalId: null
         };
@@ -57,7 +57,7 @@ class BrickCatGame extends React.Component {
         }
         for (var key in this.json) {
             if (key == this.state.counter) {
-                this.createMouse(this.json[key]);
+                this.createMouse(this.json[key], key);
             }
         }
 
@@ -90,7 +90,7 @@ class BrickCatGame extends React.Component {
         });
     }
 
-    createMouse(ratType) {
+    createMouse(ratType, key) {
         let newMouse = document.createElement('img');
         if (ratType === "custom") {
             newMouse.src = "./98Tz.webp";
@@ -102,7 +102,7 @@ class BrickCatGame extends React.Component {
             newMouse.src = "./kryska-lenka.png";
             newMouse.className = "mouse ratWoman";
         }
-
+        newMouse.id = key;
 
         if (document.querySelector(".mouseWrapper")) {
             document.querySelector(".mouseWrapper").prepend(newMouse);
@@ -131,15 +131,18 @@ class BrickCatGame extends React.Component {
             let catTop = parseInt(window.getComputedStyle(document.querySelector(".catWrapper")).getPropertyValue("left"));
             let mouseTop;
             let miss = true;
+            let isKillMouse = false;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
-                if ((mouseTop >= catTop - 30 && mouseTop <= catTop + 30)) {
+                if ((mouseTop >= catTop - 45 && mouseTop <= catTop + 20 && !isKillMouse)) {
+                    isKillMouse = true;
                     element.classList.add("dead");
                     this.audioPunch.play();
+                    console.log(element.id)
                     setTimeout(function run() {
                         this.audioPunch.pause();
                         this.audioPunch.currentTime = 0;
-                    }.bind(this), 120);
+                    }.bind(this), 100);
 
                     miss = false;
                 }
