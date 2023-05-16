@@ -200,6 +200,9 @@ body {
     height: 100px;
     padding: 0px 20px 0px 20px;
 }
+.img-about.blin {
+    height: 300px;
+}
 
 .columt-element {
     margin-bottom: 6px;

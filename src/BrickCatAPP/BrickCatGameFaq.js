@@ -20,13 +20,13 @@ class BrickCatGameFaq extends React.Component {
                 <div className="menuHeaderBig">Авторы</div>
                 <div className="flex-column">
                     <div className="columt-element">
-                        <a className="menuHeader" href="https://catwar.su/cat350676">Рываыфывафпрывларфвыа</a> - создатель кирпекотов, рисовал кирпекота.
+                        <a target="_blank" className="menuHeader" href="https://catwar.su/cat350676">Рываыфывафпрывларфвыа</a> - создатель кирпекотов, рисовал кирпекота.
                     </div>
                     <div className="columt-element">
-                        <a className="menuHeader" href="https://catwar.su/cat677916">Лайм</a> - идея сюжета взята из его комиксов.
+                        <a target="_blank" className="menuHeader" href="https://catwar.su/cat677916">Лайм</a> - идея сюжета взята из его комиксов.
                     </div>
                     <div className="columt-element">
-                        <a className="menuHeader" href="https://catwar.su/cat1432518">Озарённолапочка</a> - идея игры, код, стили .
+                        <a target="_blank" className="menuHeader" href="https://catwar.su/cat1432518">Озарённолапочка</a> - идея игры, код, стили .
                     </div>
                     <div className="columt-element">
                         <a className="menuHeader" >ephemeralCode</a> - заставлял крыс появляться на экране вовремя.
@@ -69,7 +69,7 @@ class BrickCatGameFaq extends React.Component {
                         <div className="menuHeader">
                             <div className="header red">Дутокрысы намерены перезапустить вселенную Catwar!</div>
                             <div className="p">
-                                Чтобы это сделать, им необходимо создать атомную бомбу и активировать её, но у них возникла проблема: кирпекоты украли рецепт ядерной бомбы и спрятали у себя секретный третий ингредиент — <span className="red">сыр</span>. 
+                                Чтобы это сделать, им необходимо создать атомную бомбу и активировать её, но у них возникла проблема: кирпекоты украли рецепт ядерной бомбы и спрятали у себя секретный третий ингредиент — <span className="red">сыр</span>.
                             </div>
                             <div className="p">
                                 Пока дутокрысам не достаёт важного компонента, Catwar в безопасности. Но они не остановятся, пока не заполучат третий ингредиент... Дутокрысы до последнего желают создать новый мир посредством уничтожения старого. Но кирпекоты этого не допустят!
@@ -80,7 +80,23 @@ class BrickCatGameFaq extends React.Component {
                         </div>
                     </div>
                 </div>
-
+                <div className="menuHeaderBig">Плющекрысы</div>
+                <div className="flex-row reverse">
+                    <div className="menuHeader">В процессе игры ни одна Дутокрыса не пострадала. Состояние блинчика для них является нормальной формой.</div>
+                    <img className="img-about blin" src="./1583754356_bliny-13.jpg"></img>
+                </div>
+                <div className="menuHeaderBig">Ссылка на музыку:</div>
+                <div className="flex-column">
+                    <div className="columt-element">
+                        <a target="_blank" className="menuHeader" href="https://www.youtube.com/watch?v=o2UUFFMGcgY">Die Anywhere Else</a>
+                    </div>
+                    <div className="columt-element">
+                        <a target="_blank" className="menuHeader" href="https://www.youtube.com/watch?v=P_nNo-J7hok">The Legendary Hero is Dead!</a>
+                    </div>
+                    <div className="columt-element">
+                        <a target="_blank" className="menuHeader" href="https://www.youtube.com/watch?v=Xc5o7DyI0-4">Everlasting Summer</a>
+                    </div>
+                </div>
                 <button onClick={() => this.returnToMenu()} className="button">Вернуться в начало</button>
             </div>
         )

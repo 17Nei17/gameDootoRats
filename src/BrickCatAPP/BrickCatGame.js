@@ -134,7 +134,7 @@ class BrickCatGame extends React.Component {
             let isKillMouse = false;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
-                if ((mouseTop >= catTop - 45 && mouseTop <= catTop + 20 && !isKillMouse)) {
+                if ((mouseTop >= catTop - 50 && mouseTop <= catTop + 30 && !isKillMouse)) {
                     isKillMouse = true;
                     element.classList.add("dead");
                     this.audioPunch.play();
