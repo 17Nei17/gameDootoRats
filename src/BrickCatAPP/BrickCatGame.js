@@ -15,7 +15,7 @@ class BrickCatGame extends React.Component {
         super(props);
         this.cat = document.querySelector(".catSit");
         this.state = {
-            counter: 1850,
+            counter: 1800,
             health: 5,
             intervalId: null
         };
