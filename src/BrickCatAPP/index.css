@@ -129,16 +129,28 @@ body {
 }
 
 .dead {
-    transform: scale(1.2, 0.2);
+    transform: scale(1.2, 0.2) ;
 }
 .red {
     color: red;
 }
 
 .mouse.igor,
-.mouse.ratWoman {
-    width: 90px;
+.mouse.ratWoman,
+.mouse {
+    width: 70px;
 }
+
+.mouse.igor,
+.mouse.ratWoman{
+    width: 105px !important;
+    height: 70px !important;
+}
+
+
+/* .mouse.ratWoman.dead{
+    transform: scale(3, 0.3) !important;
+} */
 
 .endTextWrapper {
     /* filter: invert(1); */

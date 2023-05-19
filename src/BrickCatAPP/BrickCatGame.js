@@ -12,13 +12,15 @@ import IgorImg from "./kryska-igor.png"
 import ratImg from "./98Tz.webp"
 import LenaImg from "./kryska-lenka.png"
 import cheese from "./2079.webp"
+import { Howl, Howler } from 'howler';
 
 
 
-const audioPunch = new Audio(skywalker_punch_sound_3Song);
-const shinda = new Audio(shindaSong);
-const everlasting_Summer = new Audio(everlasting_SummerSong);
-const alecHolowka = new Audio(alecHolowkaSong);
+// const audioPunch = new Audio(skywalker_punch_sound_3Song);
+// const shinda = new Audio(shindaSong);
+// const everlasting_Summer = new Audio(everlasting_SummerSong);
+// const alecHolowka = new Audio(alecHolowkaSong);
+
 
 
 
@@ -26,6 +28,7 @@ class BrickCatGame extends React.Component {
     constructor(props) {
         super(props);
         this.cat = document.querySelector(".catSit");
+        this.lastKey = 0;
         this.state = {
             counter: 1800,
             health: 5,
@@ -35,22 +38,31 @@ class BrickCatGame extends React.Component {
 
 
     componentWillMount() {
-        this.audioPunch = audioPunch;
+        this.start = new Date().getTime() - 1800;
+
+
+        this.audioPunch = new Howl({
+            src: [skywalker_punch_sound_3Song]
+        });;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
-            this.audio = shinda;
+            var sound = new Howl({
+                src: [shindaSong]
+            });
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
-            this.audio = everlasting_Summer;
+            var sound = new Howl({
+                src: [everlasting_SummerSong]
+            });
             this.json = jsonEverlasting;
 
         } else {
-            this.audio = alecHolowka;
+            var sound = new Howl({
+                src: [alecHolowkaSong]
+            });
             this.json = jsonalecHolowka;
         }
-        this.audio.volume = .5;
-        this.audio.pause();
-        this.audio.currentTime = 0;
+        this.audio = sound;
     }
 
     componentWillUnmount() {
@@ -63,13 +75,17 @@ class BrickCatGame extends React.Component {
     }
 
     componentDidUpdate() {
+        this.end = new Date().getTime();
         if (this.maxValue + 6000 < this.state.counter) {
             this.stopAudioAndInterval();
             this.gameWin(this.isIgorAlive);
         }
         for (var key in this.json) {
             if (key == this.state.counter) {
-                this.createMouse(this.json[key], key);
+                if (this.lastKey != key) {
+                    this.createMouse(this.json[key], key);
+                }
+                this.lastKey = key;
             }
         }
 
@@ -86,9 +102,9 @@ class BrickCatGame extends React.Component {
                         // не мертвый игорь не заканчивает игру
                         this.isIgorAlive = true;
                     } else {
-                        this.stopAudioAndInterval();
+                        // this.stopAudioAndInterval();
                         console.log("cheese")
-                        this.gameOver();
+                        // this.gameOver();
                     }
 
 
@@ -123,8 +139,8 @@ class BrickCatGame extends React.Component {
 
     componentDidMount() {
         const intervalId = setInterval(() => {
-            this.setState(prevState => ({ counter: this.state.counter + 10 }));
-        }, 10);
+            this.setState(prevState => ({ counter: String(this.end - this.start).slice(0, -1) + 0 }));
+        }, 5);
         this.setState({ intervalId });
         this.isIgorAlive = true;
         this.cat = document.querySelector(".catSit");
@@ -149,12 +165,6 @@ class BrickCatGame extends React.Component {
                     isKillMouse = true;
                     element.classList.add("dead");
                     this.audioPunch.play();
-                    console.log(element.id)
-                    setTimeout(function run() {
-                        this.audioPunch.pause();
-                        this.audioPunch.currentTime = 0;
-                    }.bind(this), 100);
-
                     miss = false;
                 }
             })
@@ -169,7 +179,7 @@ class BrickCatGame extends React.Component {
     }
 
     checkHealth() {
-        console.log(this.state.health)
+        console.log(this.state.health);
         if (this.state.health <= 0) {
             console.log("lowHP")
             this.stopAudioAndInterval();
@@ -178,12 +188,7 @@ class BrickCatGame extends React.Component {
     }
 
     stopAudioAndInterval() {
-        this.audioPunch.pause();
-        this.audioPunch.srcObj = null;
-        this.audio.pause();
-        this.audio.srcObj = null;
-        // this.currentGameState = "mount";
-        // clearInterval(this.interval);
+        Howler.unload();
     }
 
     animateCat() {
@@ -232,7 +237,7 @@ class BrickCatGame extends React.Component {
                     <img src={cheese} className="cheese"></img>
                 </div>
                 <div className="mouseWrapper">
-                    {/* <img src="./98Tz.webp" className="mouse"></img> */}
+                    {/* <img src={LenaImg} className="ratWoman mouse"></img> */}
                 </div>
                 <div className="health">у вас осталось {this.state.health} промаха</div>
                 {this.props.newState === 'newGame-everlasting' ? <div className="info-text">Нужно чуть-чуть подождать</div> : ''}
@@ -240,6 +245,7 @@ class BrickCatGame extends React.Component {
             </div>
         );
     }
+
 }
 
 export default BrickCatGame;
