@@ -3,12 +3,24 @@ import React from "react";
 import jsonshinda from "./shinda.json"
 import jsonalecHolowka from "./alecHolowka.json"
 import jsonEverlasting from "./everlasting.json"
+import skywalker_punch_sound_3Song from "./skywalker_punch_sound_3.mp3"
+import shindaSong from "./shinda.mp3"
+import everlasting_SummerSong from "./Sergey_Eybog_-_Everlasting_Summer.mp3"
+import alecHolowkaSong from "./audio.mp3"
+import catImg from "./KK.png"
+import IgorImg from "./kryska-igor.png"
+import ratImg from "./98Tz.webp"
+import LenaImg from "./kryska-lenka.png"
+import cheese from "./2079.webp"
 
 
-const audioPunch = new Audio('./skywalker_punch_sound_3.mp3');
-const shinda = new Audio('./shinda.mp3');
-const everlasting_Summer = new Audio('./Sergey_Eybog_-_Everlasting_Summer.mp3');
-const alecHolowka = new Audio('./audio.mp3');
+
+const audioPunch = new Audio(skywalker_punch_sound_3Song);
+const shinda = new Audio(shindaSong);
+const everlasting_Summer = new Audio(everlasting_SummerSong);
+const alecHolowka = new Audio(alecHolowkaSong);
+
+
 
 class BrickCatGame extends React.Component {
     constructor(props) {
@@ -93,13 +105,13 @@ class BrickCatGame extends React.Component {
     createMouse(ratType, key) {
         let newMouse = document.createElement('img');
         if (ratType === "custom") {
-            newMouse.src = "./98Tz.webp";
+            newMouse.src = ratImg;
             newMouse.className = "mouse";
         } else if (ratType === "igor") {
-            newMouse.src = "./kryska-igor.png";
+            newMouse.src = IgorImg;
             newMouse.className = "mouse igor";
         } else if (ratType === "ratWoman") {
-            newMouse.src = "./kryska-lenka.png";
+            newMouse.src = LenaImg;
             newMouse.className = "mouse ratWoman";
         }
         newMouse.id = key;
@@ -116,7 +128,6 @@ class BrickCatGame extends React.Component {
         this.setState({ intervalId });
         this.isIgorAlive = true;
         this.cat = document.querySelector(".catSit");
-        this.currentTime = 1800;
         var json = this.json;
         this.audio.play();
 
@@ -217,8 +228,8 @@ class BrickCatGame extends React.Component {
         return (
             <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
                 <div>
-                    <div className="catWrapper"><img src="./KK.png" className="catSit frame0"></img></div>
-                    <img src="./2079.webp" className="cheese"></img>
+                    <div className="catWrapper"><img src={catImg} className="catSit frame0"></img></div>
+                    <img src={cheese} className="cheese"></img>
                 </div>
                 <div className="mouseWrapper">
                     {/* <img src="./98Tz.webp" className="mouse"></img> */}
