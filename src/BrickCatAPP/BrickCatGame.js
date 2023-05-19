@@ -102,9 +102,9 @@ class BrickCatGame extends React.Component {
                         // не мертвый игорь не заканчивает игру
                         this.isIgorAlive = true;
                     } else {
-                        // this.stopAudioAndInterval();
+                        this.stopAudioAndInterval();
                         console.log("cheese")
-                        // this.gameOver();
+                        this.gameOver();
                     }
 
 
@@ -139,7 +139,7 @@ class BrickCatGame extends React.Component {
 
     componentDidMount() {
         const intervalId = setInterval(() => {
-            this.setState(prevState => ({ counter: String(this.end - this.start).slice(0, -1) + 0 }));
+            this.setState(prevState => ({ counter: Math.round((this.end - this.start)*0.1)*10}));
         }, 5);
         this.setState({ intervalId });
         this.isIgorAlive = true;
