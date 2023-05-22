@@ -48,12 +48,14 @@ class BrickCatGame extends React.Component {
                 src: [this.props.shindaSong]
             });
             this.json = jsonshinda;
+            this.isIgorAlive = false;
         } else if (this.props.newState === 'newGame-everlasting') {
             this.start = new Date().getTime() - 1610; // бесконечное лето
             var sound = new Howl({
                 src: [this.props.everlasting_SummerSong]
             });
             this.json = jsonEverlasting;
+            this.isIgorAlive = false;
 
         } else {
             this.start = new Date().getTime() - 1300; // ночь в лесу
@@ -61,6 +63,7 @@ class BrickCatGame extends React.Component {
                 src: [this.props.alecHolowkaSong]
             });
             this.json = jsonalecHolowka;
+            this.isIgorAlive = true;
         }
         this.audio = sound;
     }
@@ -141,7 +144,6 @@ class BrickCatGame extends React.Component {
             this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
         }, 5);
         this.setState({ intervalId });
-        this.isIgorAlive = true;
         this.cat = document.querySelector(".catSit");
         var json = this.json;
         this.audio.play();
