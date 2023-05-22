@@ -1,17 +1,16 @@
 import React from "react";
-// import json from "./alecHolowka.json"
 import jsonshinda from "./shinda.json"
 import jsonalecHolowka from "./alecHolowka.json"
 import jsonEverlasting from "./everlasting.json"
-import skywalker_punch_sound_3Song from "./skywalker_punch_sound_3.mp3"
-import shindaSong from "./shinda.mp3"
-import everlasting_SummerSong from "./Sergey_Eybog_-_Everlasting_Summer.mp3"
-import alecHolowkaSong from "./audio.mp3"
-import catImg from "./KK.png"
-import IgorImg from "./kryska-igor.png"
-import ratImg from "./98Tz.webp"
-import LenaImg from "./kryska-lenka.png"
-import cheese from "./2079.webp"
+// import skywalker_punch_sound_3Song from "./skywalker_punch_sound_3.mp3"
+// import shindaSong from "./shinda.mp3"
+// import everlasting_SummerSong from "./Sergey_Eybog_-_Everlasting_Summer.mp3"
+// import alecHolowkaSong from "./audio.mp3"
+// import catImg from "./KK.png"
+// import IgorImg from "./kryska-igor.png"
+// import ratImg from "./98Tz.webp"
+// import LenaImg from "./kryska-lenka.png"
+// import cheese from "./2079.webp"
 import { Howl, Howler } from 'howler';
 
 
@@ -40,26 +39,26 @@ class BrickCatGame extends React.Component {
     componentWillMount() {
 
         this.audioPunch = new Howl({
-            src: [skywalker_punch_sound_3Song]
+            src: [this.props.skywalker_punch_sound_3Song]
         });;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
             this.start = new Date().getTime() - 1200; // аниме опенинг
             var sound = new Howl({
-                src: [shindaSong]
+                src: [this.props.shindaSong]
             });
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
             this.start = new Date().getTime() - 1200; // бесконечное лето
             var sound = new Howl({
-                src: [everlasting_SummerSong]
+                src: [this.props.everlasting_SummerSong]
             });
             this.json = jsonEverlasting;
 
         } else {
             this.start = new Date().getTime() - 1200; // ночь в лесу
             var sound = new Howl({
-                src: [alecHolowkaSong]
+                src: [this.props.alecHolowkaSong]
             });
             this.json = jsonalecHolowka;
         }
@@ -121,13 +120,13 @@ class BrickCatGame extends React.Component {
     createMouse(ratType, key) {
         let newMouse = document.createElement('img');
         if (ratType === "custom") {
-            newMouse.src = ratImg;
+            newMouse.src = this.props.ratImg;
             newMouse.className = "mouse";
         } else if (ratType === "igor") {
-            newMouse.src = IgorImg;
+            newMouse.src = this.props.IgorImg;
             newMouse.className = "mouse igor";
         } else if (ratType === "ratWoman") {
-            newMouse.src = LenaImg;
+            newMouse.src = this.props.LenaImg;
             newMouse.className = "mouse ratWoman";
         }
         newMouse.id = key;
@@ -233,8 +232,8 @@ class BrickCatGame extends React.Component {
         return (
             <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
                 <div>
-                    <div className="catWrapper"><img src={catImg} className="catSit frame0"></img></div>
-                    <img src={cheese} className="cheese"></img>
+                    <div className="catWrapper"><img src={this.props.catImg} className="catSit frame0"></img></div>
+                    <img src={this.props.cheese} className="cheese"></img>
                 </div>
                 <div className="mouseWrapper">
                     {/* <img src={LenaImg} className="ratWoman mouse"></img> */}
