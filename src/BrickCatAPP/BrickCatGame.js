@@ -38,24 +38,26 @@ class BrickCatGame extends React.Component {
 
 
     componentWillMount() {
-        this.start = new Date().getTime() - 1200;
 
         this.audioPunch = new Howl({
             src: [skywalker_punch_sound_3Song]
         });;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
+            this.start = new Date().getTime() - 1200; // аниме опенинг
             var sound = new Howl({
                 src: [shindaSong]
             });
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
+            this.start = new Date().getTime() - 1200; // бесконечное лето
             var sound = new Howl({
                 src: [everlasting_SummerSong]
             });
             this.json = jsonEverlasting;
 
         } else {
+            this.start = new Date().getTime() - 1200; // ночь в лесу
             var sound = new Howl({
                 src: [alecHolowkaSong]
             });
@@ -100,9 +102,9 @@ class BrickCatGame extends React.Component {
                     if (element.classList.contains('igor')) {
                         this.isIgorAlive = true;
                     } else {
-                        // this.stopAudioAndInterval();
+                        this.stopAudioAndInterval();
                         console.log("cheese")
-                        // this.gameOver();
+                        this.gameOver();
                     }
 
 
@@ -137,7 +139,7 @@ class BrickCatGame extends React.Component {
 
     componentDidMount() {
         const intervalId = setInterval(() => {
-            this.setState(prevState => ({ counter: Math.round((this.end - this.start)*0.1)*10}));
+            this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
         }, 5);
         this.setState({ intervalId });
         this.isIgorAlive = true;
