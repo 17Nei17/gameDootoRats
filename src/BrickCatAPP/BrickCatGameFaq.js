@@ -1,5 +1,10 @@
 import React from "react";
 import './index.css';
+import brickCat from "./kot.webp"
+import dutoRat from "./98Tz.webp"
+import cheese from "./2079.webp"
+import niceRat from "./1583754356_bliny-13.jpg"
+
 
 class BrickCatGameFaq extends React.Component {
     constructor(props) {
@@ -39,19 +44,19 @@ class BrickCatGameFaq extends React.Component {
                 <div className="flex-column">
                     <div className="flex-row ">
                         <div className="menuHeader">Кирпекот (не понимает что происходит, но умеет выбивать такт своими лапками)</div>
-                        <img className="img-about" src="./kot.webp"></img>
+                        <img className="img-about" src={brickCat}></img>
                     </div>
                     <div className="flex-row reverse">
                         <div className="menuHeader">Дутокрысы (бегут - некоторые к сыру, некоторые на свидание, а некоторые по важным делам)</div>
-                        <img className="img-about" src="./98Tz.webp"></img>
+                        <img className="img-about" src={dutoRat}></img>
                     </div>
                     <div className="flex-row ">
                         <div className="menuHeader">Плющекрысы (временно перешедшие в 2д версию Дутокрысы, все еще бегут, но забыли зачем)</div>
-                        <img className="img-about dead" src="./98Tz.webp"></img>
+                        <img className="img-about dead" src={dutoRat}></img>
                     </div>
                     <div className="flex-row reverse">
                         <div className="menuHeader">Сыр (лежит)</div>
-                        <img className="img-about" src="./2079.webp"></img>
+                        <img className="img-about" src={cheese}></img>
                     </div>
                 </div>
                 <div className="menuHeaderBig">Управление</div>
@@ -83,7 +88,7 @@ class BrickCatGameFaq extends React.Component {
                 <div className="menuHeaderBig">Плющекрысы</div>
                 <div className="flex-row reverse">
                     <div className="menuHeader">В процессе игры ни одна Дутокрыса не пострадала. Состояние блинчика для них является нормальной формой.</div>
-                    <img className="img-about blin" src="./1583754356_bliny-13.jpg"></img>
+                    <img className="img-about blin" src={niceRat}></img>
                 </div>
                 <div className="menuHeaderBig">Ссылка на музыку:</div>
                 <div className="flex-column">

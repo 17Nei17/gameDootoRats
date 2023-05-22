@@ -30,7 +30,7 @@ class BrickCatGame extends React.Component {
         this.cat = document.querySelector(".catSit");
         this.lastKey = 0;
         this.state = {
-            counter: 1800,
+            counter: 1200,
             health: 5,
             intervalId: null
         };
@@ -38,8 +38,7 @@ class BrickCatGame extends React.Component {
 
 
     componentWillMount() {
-        this.start = new Date().getTime() - 1800;
-
+        this.start = new Date().getTime() - 1200;
 
         this.audioPunch = new Howl({
             src: [skywalker_punch_sound_3Song]
@@ -76,7 +75,7 @@ class BrickCatGame extends React.Component {
 
     componentDidUpdate() {
         this.end = new Date().getTime();
-        if (this.maxValue + 6000 < this.state.counter) {
+        if (this.maxValue + 5000 < this.state.counter) {
             this.stopAudioAndInterval();
             this.gameWin(this.isIgorAlive);
         }
@@ -97,19 +96,18 @@ class BrickCatGame extends React.Component {
         document.querySelectorAll(".mouse").forEach(element => {
             mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
             if ((mouseTop >= cheeseTop) && mouseTop && cheeseTop) {
-                if (!element.classList.contains('dead')) { // не умерла крыса и пришла к сыру
+                if (!element.classList.contains('dead')) {
                     if (element.classList.contains('igor')) {
-                        // не мертвый игорь не заканчивает игру
                         this.isIgorAlive = true;
                     } else {
-                        this.stopAudioAndInterval();
+                        // this.stopAudioAndInterval();
                         console.log("cheese")
-                        this.gameOver();
+                        // this.gameOver();
                     }
 
 
                 } else {
-                    if (element.classList.contains('igor')) { // мертвые игори ничего не делают
+                    if (element.classList.contains('igor')) {
                         this.isIgorAlive = false;
                     }
                 }

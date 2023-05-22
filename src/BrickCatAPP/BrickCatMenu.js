@@ -39,6 +39,9 @@ class BrickCatMenu extends React.Component {
                                 <div className="columt-element">
                                     <button onClick={() => this.newGameInit("newGame-alecHolowka")} className="button">Долгий и затяжной бой с Дутокрысами, но не сильно сложный</button>
                                 </div>
+                                <div className="columt-element">
+                                    <button className="button disabled" disabled>Парад страданий (не доступен)</button>
+                                </div>
                             </div>
                         </div>
                     </div>

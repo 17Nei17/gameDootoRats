@@ -147,6 +147,14 @@ body {
     height: 70px !important;
 }
 
+.button.disabled{
+    background:darkred;
+}
+.button.disabled:hover{
+    background: black;
+    color: darkred;
+    text-decoration: line-through;
+}
 
 /* .mouse.ratWoman.dead{
     transform: scale(3, 0.3) !important;
