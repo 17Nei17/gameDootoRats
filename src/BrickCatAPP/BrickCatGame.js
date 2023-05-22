@@ -43,20 +43,20 @@ class BrickCatGame extends React.Component {
         });;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
-            this.start = new Date().getTime() - 1200; // аниме опенинг
+            this.start = new Date().getTime() - 1450; // аниме опенинг
             var sound = new Howl({
                 src: [this.props.shindaSong]
             });
             this.json = jsonshinda;
         } else if (this.props.newState === 'newGame-everlasting') {
-            this.start = new Date().getTime() - 1200; // бесконечное лето
+            this.start = new Date().getTime() - 1610; // бесконечное лето
             var sound = new Howl({
                 src: [this.props.everlasting_SummerSong]
             });
             this.json = jsonEverlasting;
 
         } else {
-            this.start = new Date().getTime() - 1200; // ночь в лесу
+            this.start = new Date().getTime() - 1300; // ночь в лесу
             var sound = new Howl({
                 src: [this.props.alecHolowkaSong]
             });
