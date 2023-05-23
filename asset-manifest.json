@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gameDootoRats/static/css/main.9f19ecfb.css",
-    "main.js": "/gameDootoRats/static/js/main.b0201a05.js",
+    "main.js": "/gameDootoRats/static/js/main.9aca14e5.js",
     "static/js/20977.e8b6b204.chunk.js": "/gameDootoRats/static/js/20977.e8b6b204.chunk.js",
     "static/js/21639.34bd3013.chunk.js": "/gameDootoRats/static/js/21639.34bd3013.chunk.js",
     "static/js/61702.2db527ae.chunk.js": "/gameDootoRats/static/js/61702.2db527ae.chunk.js",
@@ -1257,7 +1257,7 @@
     "static/js/50831.5ebffbd6.chunk.js": "/gameDootoRats/static/js/50831.5ebffbd6.chunk.js",
     "static/js/54394.e9dd0bcb.chunk.js": "/gameDootoRats/static/js/54394.e9dd0bcb.chunk.js",
     "static/js/19288.35720d27.chunk.js": "/gameDootoRats/static/js/19288.35720d27.chunk.js",
-    "static/js/82810.9ebd9342.chunk.js": "/gameDootoRats/static/js/82810.9ebd9342.chunk.js",
+    "static/js/82810.c1b2bfdc.chunk.js": "/gameDootoRats/static/js/82810.c1b2bfdc.chunk.js",
     "static/js/82985.47c1f298.chunk.js": "/gameDootoRats/static/js/82985.47c1f298.chunk.js",
     "static/js/93072.98002b76.chunk.js": "/gameDootoRats/static/js/93072.98002b76.chunk.js",
     "static/js/82669.eb8fb8a6.chunk.js": "/gameDootoRats/static/js/82669.eb8fb8a6.chunk.js",
@@ -4371,11 +4371,11 @@
     "static/media/98Tz.webp": "/gameDootoRats/static/media/98Tz.a2446cc005597bf6ecf8.webp",
     "index.html": "/gameDootoRats/index.html",
     "main.9f19ecfb.css.map": "/gameDootoRats/static/css/main.9f19ecfb.css.map",
-    "main.b0201a05.js.map": "/gameDootoRats/static/js/main.b0201a05.js.map",
+    "main.9aca14e5.js.map": "/gameDootoRats/static/js/main.9aca14e5.js.map",
     "787.640e5109.chunk.js.map": "/gameDootoRats/static/js/787.640e5109.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f19ecfb.css",
-    "static/js/main.b0201a05.js"
+    "static/js/main.9aca14e5.js"
   ]
 }
