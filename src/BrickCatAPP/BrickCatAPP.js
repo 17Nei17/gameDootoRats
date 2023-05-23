@@ -16,6 +16,11 @@ import ratImg from "./98Tz.webp"
 import LenaImg from "./kryska-lenka.png"
 import cheese from "./2079.webp"
 
+import kryski_3 from "./kryski_3.png"
+import windowsXP from "./2016-09-29-windows-xp-bliss-l5Eg.jpg"
+import i_yPEzGo7YE from "./i_yPEzGo7YE.jpg"
+import kryski_i_kerpich from "./kryski_i_kerpich.png"
+
 class BrickCatAPP extends React.Component {
     constructor(props) {
         super(props);
@@ -67,9 +72,23 @@ class BrickCatAPP extends React.Component {
 
     render() {
         return (
-            <div className="catMenu">{
-                this.state.currentItem
-            }
+            <div>
+                <div>
+                    <link rel="preload" href={catImg} as="image"></link>
+                    <link rel="preload" href={IgorImg} as="image"></link>
+                    <link rel="preload" href={ratImg} as="image"></link>
+                    <link rel="preload" href={cheese} as="image"></link>
+
+                    <link rel="preload" href={kryski_3} as="image"></link>
+                    <link rel="preload" href={windowsXP} as="image"></link>
+                    <link rel="preload" href={i_yPEzGo7YE} as="image"></link>
+                    <link rel="preload" href={kryski_i_kerpich} as="image"></link>
+                </div>
+
+                <div className="catMenu">{
+                    this.state.currentItem
+                }
+                </div>
             </div>
         )
     }
