@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gameDootoRats/static/css/main.9f19ecfb.css",
-    "main.js": "/gameDootoRats/static/js/main.9aca14e5.js",
+    "main.css": "/gameDootoRats/static/css/main.b936a657.css",
+    "main.js": "/gameDootoRats/static/js/main.e1da8d8b.js",
     "static/js/20977.e8b6b204.chunk.js": "/gameDootoRats/static/js/20977.e8b6b204.chunk.js",
     "static/js/21639.34bd3013.chunk.js": "/gameDootoRats/static/js/21639.34bd3013.chunk.js",
     "static/js/61702.2db527ae.chunk.js": "/gameDootoRats/static/js/61702.2db527ae.chunk.js",
@@ -4307,14 +4307,14 @@
     "static/js/787.640e5109.chunk.js": "/gameDootoRats/static/js/787.640e5109.chunk.js",
     "static/media/shinda.mp3": "/gameDootoRats/static/media/shinda.56d31f536a564330356a.mp3",
     "static/media/audio.mp3": "/gameDootoRats/static/media/audio.50c7cae022494fd772b8.mp3",
-    "static/media/kryski_3.png": "/gameDootoRats/static/media/kryski_3.f0c81594f5717cf4685c.png",
     "static/media/Sergey_Eybog_-_Everlasting_Summer.mp3": "/gameDootoRats/static/media/Sergey_Eybog_-_Everlasting_Summer.a28a7df11d9c9112fffe.mp3",
-    "static/media/2016-09-29-windows-xp-bliss-l5Eg.jpg": "/gameDootoRats/static/media/2016-09-29-windows-xp-bliss-l5Eg.64acf7bbde43daee202f.jpg",
-    "static/media/i_yPEzGo7YE.jpg": "/gameDootoRats/static/media/i_yPEzGo7YE.269f27d6ab5641c11854.jpg",
+    "static/media/2016-09-29-windows-xp-bliss-l5Eg.jpg": "/gameDootoRats/static/media/2016-09-29-windows-xp-bliss-l5Eg.afdcac3f25c690400952.jpg",
+    "static/media/i_yPEzGo7YE.jpg": "/gameDootoRats/static/media/i_yPEzGo7YE.ff03cf362eeb4c70286e.jpg",
     "static/media/KK.png": "/gameDootoRats/static/media/KK.70af424063d0773d40c1.png",
     "static/media/1642476414_28-abrakadabra-fun-p-kirpich-stena-fon-36.jpg": "/gameDootoRats/static/media/1642476414_28-abrakadabra-fun-p-kirpich-stena-fon-36.965098484ecd54856cc2.jpg",
     "static/media/kryska-igor.png": "/gameDootoRats/static/media/kryska-igor.407013c57f7785343590.png",
     "static/media/kryska-lenka.png": "/gameDootoRats/static/media/kryska-lenka.fa1e91116c014fda28e5.png",
+    "static/media/kryski_3.png": "/gameDootoRats/static/media/kryski_3.66c6f6a49b133e94f9df.png",
     "static/media/kryski_i_kerpich.png": "/gameDootoRats/static/media/kryski_i_kerpich.88250d2147a5c2f2dd31.png",
     "static/media/33.png": "/gameDootoRats/static/media/33.c63f6fbd31ae04d9d59a.png",
     "static/media/42.png": "/gameDootoRats/static/media/42.298af97d766071f20ed2.png",
@@ -4370,12 +4370,12 @@
     "static/media/2079.webp": "/gameDootoRats/static/media/2079.5e488925edd4340708dd.webp",
     "static/media/98Tz.webp": "/gameDootoRats/static/media/98Tz.a2446cc005597bf6ecf8.webp",
     "index.html": "/gameDootoRats/index.html",
-    "main.9f19ecfb.css.map": "/gameDootoRats/static/css/main.9f19ecfb.css.map",
-    "main.9aca14e5.js.map": "/gameDootoRats/static/js/main.9aca14e5.js.map",
+    "main.b936a657.css.map": "/gameDootoRats/static/css/main.b936a657.css.map",
+    "main.e1da8d8b.js.map": "/gameDootoRats/static/js/main.e1da8d8b.js.map",
     "787.640e5109.chunk.js.map": "/gameDootoRats/static/js/787.640e5109.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f19ecfb.css",
-    "static/js/main.9aca14e5.js"
+    "static/css/main.b936a657.css",
+    "static/js/main.e1da8d8b.js"
   ]
 }
