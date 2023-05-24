@@ -29,7 +29,7 @@ class BrickCatGame extends React.Component {
         this.cat = document.querySelector(".catSit");
         this.lastKey = 0;
         this.state = {
-            counter: 1200,
+            counter: 1000,
             health: 5,
             intervalId: null,
             startGame: false
@@ -72,7 +72,7 @@ class BrickCatGame extends React.Component {
     }
 
     LoadAudio() {
-        this.start = new Date().getTime() - 1400;
+        this.start = new Date().getTime() - 1800;
         const intervalId = setInterval(() => {
             this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
         }, 5);
