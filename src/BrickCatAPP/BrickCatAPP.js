@@ -25,13 +25,14 @@ class BrickCatAPP extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            imageLoaded: false,
             currentState: 'menuPage',
             currentItem: <BrickCatMenu updateState={this.updateState} />
         };
     }
 
     componentDidMount() {
-
+        this.onloadImage();
     }
 
     updateState = (newState) => {
@@ -69,6 +70,24 @@ class BrickCatAPP extends React.Component {
         })
     }
 
+    onloadImage() {
+        let arrImg = [kryski_i_kerpich, i_yPEzGo7YE, windowsXP, kryski_3, cheese, IgorImg, catImg];
+        let counter = 0;
+        arrImg.forEach(element => {
+            let img = new Image();
+            img.src = element;
+            img.onload = function () {
+                // alert("image is loaded");
+                counter++;
+                console.log("img.onload");
+                if (counter === arrImg.length) {
+                    this.setState({ imageLoaded: true });
+                }
+            }.bind(this)
+        });
+
+    }
+
 
     render() {
         return (
@@ -88,6 +107,7 @@ class BrickCatAPP extends React.Component {
                 <div className="catMenu">{
                     this.state.currentItem
                 }
+                    {!this.state.imageLoaded && <div className="loadMessage"><div >Загружаются картинки...</div> </div>}
                 </div>
             </div>
         )

@@ -31,7 +31,8 @@ class BrickCatGame extends React.Component {
         this.state = {
             counter: 1200,
             health: 5,
-            intervalId: null
+            intervalId: null,
+            startGame: false
         };
     }
 
@@ -43,22 +44,21 @@ class BrickCatGame extends React.Component {
         });;
         document.addEventListener("keydown", this.onKeyPressed.bind(this));
         if (this.props.newState === "newGame-shinda") {
-            this.start = new Date().getTime() - 1450; // аниме опенинг
+            // this.start = new Date().getTime() - 1450; // аниме опенинг
             var sound = new Howl({
                 src: [this.props.shindaSong]
             });
             this.json = jsonshinda;
             this.isIgorAlive = false;
         } else if (this.props.newState === 'newGame-everlasting') {
-            this.start = new Date().getTime() - 1610; // бесконечное лето
+            // this.start = new Date().getTime() - 1610; // бесконечное лето
             var sound = new Howl({
-                src: [this.props.everlasting_SummerSong]
+                src: [this.props.everlasting_SummerSong],
             });
             this.json = jsonEverlasting;
             this.isIgorAlive = false;
-
         } else {
-            this.start = new Date().getTime() - 1300; // ночь в лесу
+            // this.start = new Date().getTime() - 1300; // ночь в лесу
             var sound = new Howl({
                 src: [this.props.alecHolowkaSong]
             });
@@ -66,6 +66,23 @@ class BrickCatGame extends React.Component {
             this.isIgorAlive = true;
         }
         this.audio = sound;
+        sound.on('load', function () {
+            this.LoadAudio();
+        }.bind(this))
+    }
+
+    LoadAudio() {
+        this.start = new Date().getTime() - 1400;
+        const intervalId = setInterval(() => {
+            this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
+        }, 5);
+        this.setState({ intervalId });
+        this.cat = document.querySelector(".catSit");
+        var json = this.json;
+        this.audio.play();
+
+        this.maxValue = Math.max(...Object.keys(json));
+        this.setState({ startGame: true });
     }
 
     componentWillUnmount() {
@@ -140,15 +157,15 @@ class BrickCatGame extends React.Component {
     }
 
     componentDidMount() {
-        const intervalId = setInterval(() => {
-            this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
-        }, 5);
-        this.setState({ intervalId });
-        this.cat = document.querySelector(".catSit");
-        var json = this.json;
-        this.audio.play();
+        // const intervalId = setInterval(() => {
+        //     this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
+        // }, 5);
+        // this.setState({ intervalId });
+        // this.cat = document.querySelector(".catSit");
+        // var json = this.json;
+        // this.audio.play();
 
-        this.maxValue = Math.max(...Object.keys(json));
+        // this.maxValue = Math.max(...Object.keys(json));
     }
 
 
@@ -231,6 +248,9 @@ class BrickCatGame extends React.Component {
     }
 
     render() {
+        if (!this.state.startGame) {
+            return <div className="menuWrapper">Загружается музыка...</div>
+        }
         return (
             <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
                 <div>
@@ -244,6 +264,7 @@ class BrickCatGame extends React.Component {
                 {this.props.newState === 'newGame-everlasting' ? <div className="info-text">Нужно чуть-чуть подождать</div> : ''}
                 <p>Counter: {this.state.counter} ms</p>
             </div>
+
         );
     }
 
