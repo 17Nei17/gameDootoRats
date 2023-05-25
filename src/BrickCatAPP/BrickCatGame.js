@@ -260,8 +260,8 @@ class BrickCatGame extends React.Component {
                 <div className="mouseWrapper">
                     {/* <img src={LenaImg} className="ratWoman mouse"></img> */}
                 </div>
-                <div className="health">у вас осталось {this.state.health} промаха</div>
-                {this.props.newState === 'newGame-everlasting' ? <div className="info-text">Нужно чуть-чуть подождать</div> : ''}
+                <div className="health">у вас осталось {this.state.health === 5 ? ' 5 промахов' : this.state.health + ' промаха'}</div>
+            
                 <p>Counter: {this.state.counter} ms</p>
             </div>
 
