@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gameDootoRats/static/css/main.b936a657.css",
-    "main.js": "/gameDootoRats/static/js/main.e1da8d8b.js",
+    "main.js": "/gameDootoRats/static/js/main.142b1cfd.js",
     "static/js/20977.e8b6b204.chunk.js": "/gameDootoRats/static/js/20977.e8b6b204.chunk.js",
     "static/js/21639.34bd3013.chunk.js": "/gameDootoRats/static/js/21639.34bd3013.chunk.js",
     "static/js/61702.2db527ae.chunk.js": "/gameDootoRats/static/js/61702.2db527ae.chunk.js",
@@ -4371,11 +4371,11 @@
     "static/media/98Tz.webp": "/gameDootoRats/static/media/98Tz.a2446cc005597bf6ecf8.webp",
     "index.html": "/gameDootoRats/index.html",
     "main.b936a657.css.map": "/gameDootoRats/static/css/main.b936a657.css.map",
-    "main.e1da8d8b.js.map": "/gameDootoRats/static/js/main.e1da8d8b.js.map",
+    "main.142b1cfd.js.map": "/gameDootoRats/static/js/main.142b1cfd.js.map",
     "787.640e5109.chunk.js.map": "/gameDootoRats/static/js/787.640e5109.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b936a657.css",
-    "static/js/main.e1da8d8b.js"
+    "static/js/main.142b1cfd.js"
   ]
 }
