@@ -17,10 +17,10 @@ class BrickCatMenu extends React.Component {
         this.props.updateState(newState);
     }
 
-
+   
     render() {
         if (window.innerWidth < 1200) {
-            return (<div className="menuWrapper" ><div>Ваше устройство не поддерживает игру.</div></div>)
+            return (<div className="menuWrapper"><div>Ваше устройство не поддерживает игру.</div></div>)
         } else {
             return (
                 <div>
@@ -40,7 +40,7 @@ class BrickCatMenu extends React.Component {
                                     <button onClick={() => this.newGameInit("newGame-alecHolowka")} className="button">Долгий и затяжной бой с Дутокрысами, но не сильно сложный</button>
                                 </div>
                                 <div className="columt-element">
-                                    <button className="button disabled" disabled>Парад страданий (не доступен)</button>
+                                    <button onClick={() => this.newGameInit("newGame-harfest")} className="button">Парад страданий</button>
                                 </div>
                             </div>
                         </div>

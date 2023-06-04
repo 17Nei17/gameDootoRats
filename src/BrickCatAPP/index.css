@@ -68,6 +68,10 @@ body {
     background-image: url(./i_yPEzGo7YE.jpg);
 }
 
+.gameField.harfest {
+    background-image: url(./harfestPng.png);
+}
+
 .gameField.igorAlive {
     background-image: url(./kryski_i_kerpich.png);
 }

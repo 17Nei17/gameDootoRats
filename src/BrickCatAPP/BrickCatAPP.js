@@ -10,6 +10,7 @@ import skywalker_punch_sound_3Song from "./skywalker_punch_sound_3.mp3"
 import shindaSong from "./shinda.mp3"
 import everlasting_SummerSong from "./Sergey_Eybog_-_Everlasting_Summer.mp3"
 import alecHolowkaSong from "./audio.mp3"
+import harfest from "./harfest.mp3"
 import catImg from "./KK.png"
 import IgorImg from "./kryska-igor.png"
 import ratImg from "./98Tz.webp"
@@ -20,6 +21,7 @@ import kryski_3 from "./kryski_3.png"
 import windowsXP from "./2016-09-29-windows-xp-bliss-l5Eg.jpg"
 import i_yPEzGo7YE from "./i_yPEzGo7YE.jpg"
 import kryski_i_kerpich from "./kryski_i_kerpich.png"
+import harfestPng from "./harfestPng.png"
 
 class BrickCatAPP extends React.Component {
     constructor(props) {
@@ -40,7 +42,7 @@ class BrickCatAPP extends React.Component {
         if (newState == "menuPage") {
             current = <BrickCatMenu updateState={this.updateState} />
         }
-        if (newState == "newGame-shinda" || newState == "newGame-alecHolowka" || newState == "newGame-everlasting") {
+        if (newState == "newGame-shinda" || newState == "newGame-alecHolowka" || newState == "newGame-everlasting" || newState == "newGame-harfest") {
             current = <BrickCatGame
                 updateState={this.updateState}
                 newState={newState}
@@ -48,11 +50,13 @@ class BrickCatAPP extends React.Component {
                 shindaSong={shindaSong}
                 everlasting_SummerSong={everlasting_SummerSong}
                 alecHolowkaSong={alecHolowkaSong}
+                harfest={harfest}
                 catImg={catImg}
                 IgorImg={IgorImg}
                 ratImg={ratImg}
                 LenaImg={LenaImg}
                 cheese={cheese}
+                harfestPng={harfestPng}
             />
         }
         if (newState == "gameOver") {

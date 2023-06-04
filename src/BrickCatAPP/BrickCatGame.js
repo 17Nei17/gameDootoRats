@@ -2,24 +2,8 @@ import React from "react";
 import jsonshinda from "./shinda.json"
 import jsonalecHolowka from "./alecHolowka.json"
 import jsonEverlasting from "./everlasting.json"
-// import skywalker_punch_sound_3Song from "./skywalker_punch_sound_3.mp3"
-// import shindaSong from "./shinda.mp3"
-// import everlasting_SummerSong from "./Sergey_Eybog_-_Everlasting_Summer.mp3"
-// import alecHolowkaSong from "./audio.mp3"
-// import catImg from "./KK.png"
-// import IgorImg from "./kryska-igor.png"
-// import ratImg from "./98Tz.webp"
-// import LenaImg from "./kryska-lenka.png"
-// import cheese from "./2079.webp"
+// import jsonHarfest from "./jsonHarfest.json"
 import { Howl, Howler } from 'howler';
-
-
-
-// const audioPunch = new Audio(skywalker_punch_sound_3Song);
-// const shinda = new Audio(shindaSong);
-// const everlasting_Summer = new Audio(everlasting_SummerSong);
-// const alecHolowka = new Audio(alecHolowkaSong);
-
 
 
 
@@ -58,7 +42,15 @@ class BrickCatGame extends React.Component {
             });
             this.json = jsonEverlasting;
             this.isIgorAlive = false;
-        } else {
+        } else if (this.props.newState === 'newGame-harfest') {
+            // this.start = new Date().getTime() - 1610; // harfest
+            var sound = new Howl({
+                src: [this.props.harfest],
+            });
+            this.json = jsonEverlasting; //вставить нужный this.json = jsonHarfest
+            this.isIgorAlive = false;
+        }
+         else {
             // this.start = new Date().getTime() - 1300; // ночь в лесу
             var sound = new Howl({
                 src: [this.props.alecHolowkaSong]
@@ -238,7 +230,7 @@ class BrickCatGame extends React.Component {
 
 
     gameOver() {
-        // this.props.updateState("gameOver");
+         this.props.updateState("gameOver");
     }
 
     gameWin(isIgorAlive) {
@@ -254,7 +246,8 @@ class BrickCatGame extends React.Component {
             return <div className="menuWrapper">Загружается музыка...</div>
         }
         return (
-            <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : "gameField"}>
+           // 
+            <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : this.props.newState === "newGame-harfest" ? "gameField harfest" : "gameField"}>
                 <div>
                     <div className="catWrapper"><img src={this.props.catImg} className="catSit frame0"></img></div>
                     <img src={this.props.cheese} className="cheese"></img>
