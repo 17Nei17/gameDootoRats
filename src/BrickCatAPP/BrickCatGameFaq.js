@@ -117,6 +117,9 @@ class BrickCatGameFaq extends React.Component {
                     <div className="columt-element">
                         <a target="_blank" className="menuHeader" href="https://www.youtube.com/watch?v=Xc5o7DyI0-4">Everlasting Summer</a>
                     </div>
+                    <div className="columt-element">
+                        <a target="_blank" className="menuHeader" href="https://youtu.be/sIRb8XfhTRU">Harfest</a>
+                    </div>
                 </div>
                 <button onClick={() => this.returnToMenu()} className="button">Вернуться в начало</button>
             </div>
