@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkgameDootoRats=self.webpackChunkgameDootoRats||[]).push([[18410],{18410:function(e,t,s){e.exports=s.p+"static/media/4.057556884ec6e375372c.png"}}]);
