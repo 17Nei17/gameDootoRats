@@ -2,7 +2,7 @@ import React from "react";
 import jsonshinda from "./shinda.json"
 import jsonalecHolowka from "./alecHolowka.json"
 import jsonEverlasting from "./everlasting.json"
-// import jsonHarfest from "./jsonHarfest.json"
+import jsonHarfest from "./jsonHarfest.json"
 import { Howl, Howler } from 'howler';
 
 
@@ -47,7 +47,7 @@ class BrickCatGame extends React.Component {
             var sound = new Howl({
                 src: [this.props.harfest],
             });
-            this.json = jsonEverlasting; //вставить нужный this.json = jsonHarfest
+            this.json = jsonHarfest;
             this.isIgorAlive = false;
         }
          else {
