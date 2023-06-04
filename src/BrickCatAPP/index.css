@@ -46,6 +46,14 @@ body {
     color: white;
     border: 1px solid firebrick;
 }
+.button.green{
+    background: darkgreen;
+    border: 1px solid greenyellow;
+}
+.button.green:hover {
+    background: green;
+    border: 1px solid greenyellow;
+}
 
 .button:hover {
     background: red;
@@ -64,13 +72,14 @@ body {
     background-size: cover;
 }
 
-.gameField.everlasting {
-    background-image: url(./i_yPEzGo7YE.jpg);
-}
-
-.gameField.harfest {
+.newGame-harfest, .newGame-harfest-safe {
     background-image: url(./harfestPng.png);
 }
+
+.newGame-everlasting {
+    background-image: url(./i_yPEzGo7YE.jpg); 
+}
+
 
 .gameField.igorAlive {
     background-image: url(./kryski_i_kerpich.png);

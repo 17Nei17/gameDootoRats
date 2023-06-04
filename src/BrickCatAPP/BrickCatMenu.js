@@ -42,6 +42,9 @@ class BrickCatMenu extends React.Component {
                                 <div className="columt-element">
                                     <button onClick={() => this.newGameInit("newGame-harfest")} className="button">Парад страданий</button>
                                 </div>
+                                <div className="columt-element">
+                                    <button onClick={() => this.newGameInit("newGame-harfest-safe")} className="button green">Парад страданий (версия без смертей для теста)</button>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ class BrickCatGame extends React.Component {
 
 
     componentWillMount() {
-
+        console.log(this.props.newState)
         this.audioPunch = new Howl({
             src: [this.props.skywalker_punch_sound_3Song]
         });;
@@ -42,7 +42,8 @@ class BrickCatGame extends React.Component {
             });
             this.json = jsonEverlasting;
             this.isIgorAlive = false;
-        } else if (this.props.newState === 'newGame-harfest') {
+
+        } else if (this.props.newState === 'newGame-harfest' || this.props.newState === "newGame-harfest-safe") {
             // this.start = new Date().getTime() - 1610; // harfest
             var sound = new Howl({
                 src: [this.props.harfest],
@@ -50,7 +51,7 @@ class BrickCatGame extends React.Component {
             this.json = jsonHarfest;
             this.isIgorAlive = false;
         }
-         else {
+        else {
             // this.start = new Date().getTime() - 1300; // ночь в лесу
             var sound = new Howl({
                 src: [this.props.alecHolowkaSong]
@@ -65,6 +66,8 @@ class BrickCatGame extends React.Component {
     }
 
     LoadAudio() {
+        console.log(this.props.newState)
+        console.log(this.props.newState === "newGame-harfest" || "newGame-harfest-safe")
         this.start = new Date().getTime() - 1800;
         const intervalId = setInterval(() => {
             this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
@@ -115,9 +118,12 @@ class BrickCatGame extends React.Component {
                     if (element.classList.contains('igor')) {
                         this.isIgorAlive = true;
                     } else {
-                        this.stopAudioAndInterval();
-                        console.log("cheese")
-                        this.gameOver();
+                        if (this.props.newState !== "newGame-harfest-safe") {
+                            this.stopAudioAndInterval();
+                            console.log("cheese")
+                            this.gameOver();
+                        }
+
                     }
 
 
@@ -173,7 +179,7 @@ class BrickCatGame extends React.Component {
             let isKillMouse = false;
             document.querySelectorAll(".mouse").forEach(element => {
                 mouseTop = parseInt(window.getComputedStyle(element).getPropertyValue("left"));
-                if ((mouseTop >= catTop - 50 && mouseTop <= catTop + 30 && !isKillMouse)) {
+                if ((mouseTop >= catTop - 40 && mouseTop <= catTop + 50 && !isKillMouse)) {
                     isKillMouse = true;
                     element.classList.add("dead");
                     this.audioPunch.play();
@@ -194,8 +200,10 @@ class BrickCatGame extends React.Component {
         console.log(this.state.health);
         if (this.state.health <= 0) {
             console.log("lowHP")
-            this.stopAudioAndInterval();
-            this.gameOver();
+            if (this.props.newState !== "newGame-harfest-safe") {
+                this.stopAudioAndInterval();
+                this.gameOver();
+            }
         }
     }
 
@@ -230,7 +238,7 @@ class BrickCatGame extends React.Component {
 
 
     gameOver() {
-         this.props.updateState("gameOver");
+        this.props.updateState("gameOver");
     }
 
     gameWin(isIgorAlive) {
@@ -246,8 +254,8 @@ class BrickCatGame extends React.Component {
             return <div className="menuWrapper">Загружается музыка...</div>
         }
         return (
-           // 
-            <div className={this.props.newState === 'newGame-everlasting' ? "gameField everlasting" : this.props.newState === "newGame-harfest" ? "gameField harfest" : "gameField"}>
+            // 
+            <div className={this.props.newState + ' gameField'}>
                 <div>
                     <div className="catWrapper"><img src={this.props.catImg} className="catSit frame0"></img></div>
                     <img src={this.props.cheese} className="cheese"></img>
