@@ -32,7 +32,8 @@ class BrickCatGame extends React.Component {
             counter: 1000,
             health: 5,
             intervalId: null,
-            startGame: false
+            startGame: false,
+            persent: 0
         };
     }
 
@@ -75,6 +76,7 @@ class BrickCatGame extends React.Component {
         this.start = new Date().getTime() - 1800;
         const intervalId = setInterval(() => {
             this.setState(prevState => ({ counter: Math.round((this.end - this.start) * 0.1) * 10 }));
+            this.setState({ persent: Math.trunc((this.state.counter * 100) / (this.maxValue + 5000)) });
         }, 5);
         this.setState({ intervalId });
         this.cat = document.querySelector(".catSit");
@@ -236,7 +238,7 @@ class BrickCatGame extends React.Component {
 
 
     gameOver() {
-        this.props.updateState("gameOver");
+        // this.props.updateState("gameOver");
     }
 
     gameWin(isIgorAlive) {
@@ -261,8 +263,11 @@ class BrickCatGame extends React.Component {
                     {/* <img src={LenaImg} className="ratWoman mouse"></img> */}
                 </div>
                 <div className="health">у вас осталось {this.state.health === 5 ? ' 5 промахов' : this.state.health + ' промаха'}</div>
-            
+
                 <p>Counter: {this.state.counter} ms</p>
+                <div className="progressbar">
+                    <span style={{ width: this.state.persent + "%" }}></span>
+                </div>
             </div>
 
         );
